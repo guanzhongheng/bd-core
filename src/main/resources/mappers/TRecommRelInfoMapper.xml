@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xcd.bd.dao.TRecommRelInfoMapper">
+
+    <resultMap id="tRecommRelInfoResultMap" type="com.xcd.bd.entity.TRecommRelInfo">
+        <id column="user_id" property="userId" jdbcType="BIGINT"/> 
+        <result column="recomm_user_id" property="recommUserId" jdbcType="BIGINT"/> 
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/> 
+
+        
+        
+    </resultMap>
+
+
+    <select id="get" resultMap="tRecommRelInfoResultMap">
+        SELECT *
+        FROM T_RECOMM_REL_INFO
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="findList" resultMap="tRecommRelInfoResultMap">
+        SELECT *
+        FROM T_RECOMM_REL_INFO
+        <where>
+        </where>
+    </select>
+
+    <select id="findAllList" resultMap="tRecommRelInfoResultMap">
+        SELECT *
+        FROM T_RECOMM_REL_INFO
+    </select>
+
+    <insert id="insert" parameterType ="com.xcd.bd.entity.TRecommRelInfo">
+        INSERT INTO T_RECOMM_REL_INFO(
+            user_id,
+            recomm_user_id,
+            create_time
+        )
+        VALUES (
+            #{userId,jdbcType=BIGINT},
+            #{recommUserId,jdbcType=BIGINT},
+            #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <insert id="insertBatch" parameterType="com.xcd.bd.entity.TRecommRelInfo">
+        INSERT INTO T_RECOMM_REL_INFO(
+            user_id,
+            recomm_user_id,
+            create_time
+        )
+        VALUES
+        <foreach collection ="list" item="tRecommRelInfo" separator =",">
+        (
+            #{tRecommRelInfo.userId,jdbcType=BIGINT},
+            #{tRecommRelInfo.recommUserId,jdbcType=BIGINT},
+            #{tRecommRelInfo.createTime,jdbcType=TIMESTAMP}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update"  parameterType ="com.xcd.bd.entity.TRecommRelInfo">
+        UPDATE T_RECOMM_REL_INFO
+        SET
+        user_id = #{userId},
+        recomm_user_id = #{recommUserId},
+        create_time = #{createTime}
+        WHERE user_id = #{userId}
+    </update>
+
+    <delete id="delete"  parameterType ="com.xcd.bd.entity.TRecommRelInfo">
+        DELETE FROM T_RECOMM_REL_INFO
+        WHERE user_id = #{userId}
+    </delete>
+
+</mapper>

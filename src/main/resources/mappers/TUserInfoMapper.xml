@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xcd.bd.dao.TUserInfoMapper">
+
+    <resultMap id="tUserInfoResultMap" type="com.xcd.bd.entity.TUserInfo">
+        <id column="user_id" property="userId" jdbcType="BIGINT"/> 
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/> 
+        <result column="password" property="password" jdbcType="VARCHAR"/> 
+        <result column="address" property="address" jdbcType="VARCHAR"/> 
+        <result column="inv_code" property="invCode" jdbcType="VARCHAR"/> 
+        <result column="attach_url" property="attachUrl" jdbcType="VARCHAR"/> 
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/> 
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/> 
+
+        
+        
+    </resultMap>
+
+
+    <select id="get" resultMap="tUserInfoResultMap">
+        SELECT *
+        FROM T_USER_INFO
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="findList" resultMap="tUserInfoResultMap">
+        SELECT *
+        FROM T_USER_INFO
+        <where>
+        </where>
+    </select>
+
+    <select id="findAllList" resultMap="tUserInfoResultMap">
+        SELECT *
+        FROM T_USER_INFO
+    </select>
+
+    <insert id="insert" parameterType ="com.xcd.bd.entity.TUserInfo">
+        INSERT INTO T_USER_INFO(
+            user_id,
+            user_name,
+            password,
+            address,
+            inv_code,
+            attach_url,
+            create_time,
+            update_time
+        )
+        VALUES (
+            #{userId,jdbcType=BIGINT},
+            #{userName,jdbcType=VARCHAR},
+            #{password,jdbcType=VARCHAR},
+            #{address,jdbcType=VARCHAR},
+            #{invCode,jdbcType=VARCHAR},
+            #{attachUrl,jdbcType=VARCHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <insert id="insertBatch" parameterType="com.xcd.bd.entity.TUserInfo">
+        INSERT INTO T_USER_INFO(
+            user_id,
+            user_name,
+            password,
+            address,
+            inv_code,
+            attach_url,
+            create_time,
+            update_time
+        )
+        VALUES
+        <foreach collection ="list" item="tUserInfo" separator =",">
+        (
+            #{tUserInfo.userId,jdbcType=BIGINT},
+            #{tUserInfo.userName,jdbcType=VARCHAR},
+            #{tUserInfo.password,jdbcType=VARCHAR},
+            #{tUserInfo.address,jdbcType=VARCHAR},
+            #{tUserInfo.invCode,jdbcType=VARCHAR},
+            #{tUserInfo.attachUrl,jdbcType=VARCHAR},
+            #{tUserInfo.createTime,jdbcType=TIMESTAMP},
+            #{tUserInfo.updateTime,jdbcType=TIMESTAMP}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update"  parameterType ="com.xcd.bd.entity.TUserInfo">
+        UPDATE T_USER_INFO
+        SET
+        user_id = #{userId},
+        user_name = #{userName},
+        password = #{password},
+        address = #{address},
+        inv_code = #{invCode},
+        attach_url = #{attachUrl},
+        create_time = #{createTime},
+        update_time = #{updateTime}
+        WHERE user_id = #{userId}
+    </update>
+
+    <delete id="delete"  parameterType ="com.xcd.bd.entity.TUserInfo">
+        DELETE FROM T_USER_INFO
+        WHERE user_id = #{userId}
+    </delete>
+
+</mapper>

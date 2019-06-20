@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xcd.bd.dao.TAcctInfoMapper">
+
+    <resultMap id="tAcctInfoResultMap" type="com.xcd.bd.entity.TAcctInfo">
+        <id column="user_id" property="userId" jdbcType="BIGINT"/> 
+        <result column="aval_amount" property="avalAmount" jdbcType="DOUBLE"/> 
+        <result column="total_amount" property="totalAmount" jdbcType="DOUBLE"/> 
+        <result column="rate" property="rate" jdbcType="DOUBLE"/> 
+        <result column="recomm_sum" property="recommSum" jdbcType="INTEGER"/> 
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/> 
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/> 
+
+        
+        
+    </resultMap>
+
+
+    <select id="get" resultMap="tAcctInfoResultMap">
+        SELECT *
+        FROM T_ACCT_INFO
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="findList" resultMap="tAcctInfoResultMap">
+        SELECT *
+        FROM T_ACCT_INFO
+        <where>
+        </where>
+    </select>
+
+    <select id="findAllList" resultMap="tAcctInfoResultMap">
+        SELECT *
+        FROM T_ACCT_INFO
+    </select>
+
+    <insert id="insert" parameterType ="com.xcd.bd.entity.TAcctInfo">
+        INSERT INTO T_ACCT_INFO(
+            user_id,
+            aval_amount,
+            total_amount,
+            rate,
+            recomm_sum,
+            create_time,
+            update_time
+        )
+        VALUES (
+            #{userId,jdbcType=BIGINT},
+            #{avalAmount,jdbcType=DOUBLE},
+            #{totalAmount,jdbcType=DOUBLE},
+            #{rate,jdbcType=DOUBLE},
+            #{recommSum,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <insert id="insertBatch" parameterType="com.xcd.bd.entity.TAcctInfo">
+        INSERT INTO T_ACCT_INFO(
+            user_id,
+            aval_amount,
+            total_amount,
+            rate,
+            recomm_sum,
+            create_time,
+            update_time
+        )
+        VALUES
+        <foreach collection ="list" item="tAcctInfo" separator =",">
+        (
+            #{tAcctInfo.userId,jdbcType=BIGINT},
+            #{tAcctInfo.avalAmount,jdbcType=DOUBLE},
+            #{tAcctInfo.totalAmount,jdbcType=DOUBLE},
+            #{tAcctInfo.rate,jdbcType=DOUBLE},
+            #{tAcctInfo.recommSum,jdbcType=INTEGER},
+            #{tAcctInfo.createTime,jdbcType=TIMESTAMP},
+            #{tAcctInfo.updateTime,jdbcType=TIMESTAMP}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update"  parameterType ="com.xcd.bd.entity.TAcctInfo">
+        UPDATE T_ACCT_INFO
+        SET
+        user_id = #{userId},
+        aval_amount = #{avalAmount},
+        total_amount = #{totalAmount},
+        rate = #{rate},
+        recomm_sum = #{recommSum},
+        create_time = #{createTime},
+        update_time = #{updateTime}
+        WHERE user_id = #{userId}
+    </update>
+
+    <delete id="delete"  parameterType ="com.xcd.bd.entity.TAcctInfo">
+        DELETE FROM T_ACCT_INFO
+        WHERE user_id = #{userId}
+    </delete>
+
+</mapper>
