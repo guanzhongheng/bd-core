@@ -14,6 +14,7 @@ import java.util.List;
 */
 @Service
 public class AcctInfoServiceImpl implements IAcctInfoService {
+
     @Autowired
     private TAcctInfoMapper tAcctInfoMapper;
 
