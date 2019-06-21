@@ -1,7 +1,7 @@
 package com.xcd.bd.controller;
 
 import com.xcd.bd.entity.TAcctInfo;
-import com.xcd.bd.service.TAcctInfoService;
+import com.xcd.bd.service.IAcctInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping(value = "/tAcctInfo")
 public class TAcctInfoController {
     @Autowired
-    private TAcctInfoService tAcctInfoService;
+    private IAcctInfoService tAcctInfoService;
 
     @RequestMapping(value = {"/list", ""}, method = RequestMethod.GET)
     public Object list() {

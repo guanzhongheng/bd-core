@@ -8,7 +8,7 @@ import java.util.List;
 * Author ljk
 * Date  2019-06-20
 */
-public interface TAcctInfoService {
+public interface IAcctInfoService {
     TAcctInfo get(String id);
 
     List<TAcctInfo> findList(TAcctInfo tAcctInfo);

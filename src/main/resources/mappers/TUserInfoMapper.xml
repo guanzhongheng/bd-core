@@ -30,12 +30,27 @@
         </where>
     </select>
 
+    <select id="findByUserName" parameterType="java.lang.String" resultMap="tUserInfoResultMap">
+        SELECT *
+        FROM T_USER_INFO
+        where user_name=#{userName,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findUserIdByInvCode" parameterType="java.lang.String" resultType="java.lang.Long">
+        SELECT user_id
+        FROM T_USER_INFO
+        where inv_code=#{invCode,jdbcType=VARCHAR}
+    </select>
+
     <select id="findAllList" resultMap="tUserInfoResultMap">
         SELECT *
         FROM T_USER_INFO
     </select>
 
     <insert id="insert" parameterType ="com.xcd.bd.entity.TUserInfo">
+        <selectKey keyProperty="userId" resultType="java.lang.Long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         INSERT INTO T_USER_INFO(
             user_id,
             user_name,

@@ -13,7 +13,7 @@ import java.util.List;
 * Date  2019-06-20
 */
 @Service
-public class TRecommRelInfoServiceImpl implements IRecommRelInfoService {
+public class RecommRelInfoServiceImpl implements IRecommRelInfoService {
     @Autowired
     private TRecommRelInfoMapper tRecommRelInfoMapper;
 

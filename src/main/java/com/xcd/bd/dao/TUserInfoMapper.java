@@ -24,4 +24,8 @@ public interface TUserInfoMapper {
 
     int delete(TUserInfo tUserInfo);
 
+    TUserInfo findByUserName(String userName);
+
+    Long findUserIdByInvCode(String invCode);
+
 }

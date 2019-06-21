@@ -3,16 +3,15 @@
 <mapper namespace="com.xcd.bd.dao.TAcctInfoMapper">
 
     <resultMap id="tAcctInfoResultMap" type="com.xcd.bd.entity.TAcctInfo">
-        <id column="user_id" property="userId" jdbcType="BIGINT"/> 
-        <result column="aval_amount" property="avalAmount" jdbcType="DOUBLE"/> 
-        <result column="total_amount" property="totalAmount" jdbcType="DOUBLE"/> 
-        <result column="rate" property="rate" jdbcType="DOUBLE"/> 
-        <result column="recomm_sum" property="recommSum" jdbcType="INTEGER"/> 
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/> 
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/> 
+        <id column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="aval_amount" property="avalAmount" jdbcType="DOUBLE"/>
+        <result column="total_amount" property="totalAmount" jdbcType="DOUBLE"/>
+        <result column="rate" property="rate" jdbcType="DOUBLE"/>
+        <result column="recomm_sum" property="recommSum" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
 
-        
-        
+
     </resultMap>
 
 
@@ -34,7 +33,7 @@
         FROM T_ACCT_INFO
     </select>
 
-    <insert id="insert" parameterType ="com.xcd.bd.entity.TAcctInfo">
+    <insert id="insert" parameterType="com.xcd.bd.entity.TAcctInfo">
         INSERT INTO T_ACCT_INFO(
             user_id,
             aval_amount,
@@ -57,17 +56,17 @@
 
     <insert id="insertBatch" parameterType="com.xcd.bd.entity.TAcctInfo">
         INSERT INTO T_ACCT_INFO(
-            user_id,
-            aval_amount,
-            total_amount,
-            rate,
-            recomm_sum,
-            create_time,
-            update_time
+        user_id,
+        aval_amount,
+        total_amount,
+        rate,
+        recomm_sum,
+        create_time,
+        update_time
         )
         VALUES
-        <foreach collection ="list" item="tAcctInfo" separator =",">
-        (
+        <foreach collection="list" item="tAcctInfo" separator=",">
+            (
             #{tAcctInfo.userId,jdbcType=BIGINT},
             #{tAcctInfo.avalAmount,jdbcType=DOUBLE},
             #{tAcctInfo.totalAmount,jdbcType=DOUBLE},
@@ -75,24 +74,34 @@
             #{tAcctInfo.recommSum,jdbcType=INTEGER},
             #{tAcctInfo.createTime,jdbcType=TIMESTAMP},
             #{tAcctInfo.updateTime,jdbcType=TIMESTAMP}
-        )
+            )
         </foreach>
     </insert>
 
-    <update id="update"  parameterType ="com.xcd.bd.entity.TAcctInfo">
+    <update id="update" parameterType="com.xcd.bd.entity.TAcctInfo">
         UPDATE T_ACCT_INFO
-        SET
-        user_id = #{userId},
-        aval_amount = #{avalAmount},
-        total_amount = #{totalAmount},
-        rate = #{rate},
-        recomm_sum = #{recommSum},
-        create_time = #{createTime},
-        update_time = #{updateTime}
-        WHERE user_id = #{userId}
+        <set>
+            <if test="avalAmount!=null">
+                aval_amount =aval_amount+ #{avalAmount,jdbcType=DOUBLE},
+            </if>
+
+            <if test="totalAmount!=null">
+                total_amount =total_amount+ #{totalAmount,jdbcType=DOUBLE},
+            </if>
+
+            <if test="recommSum!=null">
+                recomm_sum =recomm_sum+ #{recommSum,jdbcType=INTEGER},
+            </if>
+
+            <if test="updateTime!=null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+
+        WHERE user_id = #{userId,jdbcType=BIGINT}
     </update>
 
-    <delete id="delete"  parameterType ="com.xcd.bd.entity.TAcctInfo">
+    <delete id="delete" parameterType="com.xcd.bd.entity.TAcctInfo">
         DELETE FROM T_ACCT_INFO
         WHERE user_id = #{userId}
     </delete>

@@ -2,7 +2,7 @@ package com.xcd.bd.service.impl;
 
 import com.xcd.bd.dao.TAcctInfoMapper;
 import com.xcd.bd.entity.TAcctInfo;
-import com.xcd.bd.service.TAcctInfoService;
+import com.xcd.bd.service.IAcctInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.List;
 * Date  2019-06-20
 */
 @Service
-public class TAcctInfoServiceImpl implements TAcctInfoService{
+public class AcctInfoServiceImpl implements IAcctInfoService {
     @Autowired
     private TAcctInfoMapper tAcctInfoMapper;
 
