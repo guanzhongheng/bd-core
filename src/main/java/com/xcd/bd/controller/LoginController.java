@@ -3,16 +3,32 @@ package com.xcd.bd.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Map;
+
 @Controller
-@RequestMapping("/")
 public class LoginController {
 
 
-    @RequestMapping(value = "login")
+    @RequestMapping("/login")
     public String firstLogin(){
-        return "login";
+        return "sys/login";
     }
 
+    @RequestMapping("/index")
+    public String index(){
+        return "sys/index";
+    }
+
+    @RequestMapping("/loginSucess")
+    public String loginSuce(Map<String,Object> map){
+        return "sys/index";
+    }
+
+
+    @RequestMapping("/admin/register")
+    public String register(){
+        return "sys/register";
+    }
 
 
 }
