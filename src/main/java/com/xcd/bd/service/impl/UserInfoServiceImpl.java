@@ -92,8 +92,18 @@ public class UserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
-    public int update(TUserInfo tUserInfo) {
-        return tUserInfoMapper.update(tUserInfo);
+    public int update(UserVo vo) {
+        Date current = new Date();
+        TUserInfo us = new TUserInfo();
+        us.setUserId(vo.getUserId());
+        us.setPassword(vo.getPassword());
+        us.setAddress(vo.getAddress());
+        us.setAttachUrl(vo.getAttachUrl());
+        if(vo.getAttachUrl()!=null){
+            us.setStatus('1');
+        }
+        us.setCreateTime(current);
+        return tUserInfoMapper.update(us);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.xcd.bd.service.impl;
 import com.xcd.bd.service.IPictureService;
 import com.xcd.bd.utils.FileUtil;
 import com.xcd.bd.utils.IDUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,6 +13,10 @@ import java.util.Map;
 
 @Service
 public class PictureServiceImpl implements IPictureService {
+
+    @Value("image.upload.path")
+    private String filePath;
+//    private String filePath = "/Users/lijinku/Documents/picture/";
 
     @Override
     public Map<String, Object> uploadPicture(MultipartFile uploadFile) throws Exception {
@@ -31,8 +36,6 @@ public class PictureServiceImpl implements IPictureService {
                 String newName = IDUtils.genImageName();
 
                 newName = newName + oldName.substring(oldName.lastIndexOf("."));
-
-                String filePath = "/Users/lijinku/Documents/picture/";
 
                 //新文件
                 File file = new File(filePath + newName);

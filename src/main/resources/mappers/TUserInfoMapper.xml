@@ -9,11 +9,11 @@
         <result column="address" property="address" jdbcType="VARCHAR"/> 
         <result column="inv_code" property="invCode" jdbcType="VARCHAR"/> 
         <result column="attach_url" property="attachUrl" jdbcType="VARCHAR"/> 
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/> 
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="recieve_name" property="recieveName" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/> 
-
-        
-        
     </resultMap>
 
 
@@ -58,6 +58,7 @@
             address,
             inv_code,
             attach_url,
+            status,
             create_time,
             update_time
         )
@@ -68,6 +69,7 @@
             #{address,jdbcType=VARCHAR},
             #{invCode,jdbcType=VARCHAR},
             #{attachUrl,jdbcType=VARCHAR},
+            #{status,jdbcType=CHAR},
             #{createTime,jdbcType=TIMESTAMP},
             #{updateTime,jdbcType=TIMESTAMP}
         )
@@ -101,16 +103,31 @@
 
     <update id="update"  parameterType ="com.xcd.bd.entity.TUserInfo">
         UPDATE T_USER_INFO
-        SET
-        user_id = #{userId},
-        user_name = #{userName},
-        password = #{password},
-        address = #{address},
-        inv_code = #{invCode},
-        attach_url = #{attachUrl},
-        create_time = #{createTime},
-        update_time = #{updateTime}
-        WHERE user_id = #{userId}
+        <set>
+            <if test="password!=null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="address!=null">
+                address = #{address,jdbcType=VARCHAR}},
+            </if>
+            <if test="attachUrl!=null">
+                attach_url = #{attachUrl,jdbcType=VARCHAR}},
+            </if>
+            <if test="phone!=null">
+                phone = #{phone,jdbcType=VARCHAR}},
+            </if>
+            <if test="recieveName!=null">
+                recieve_name = #{recieveName,jdbcType=VARCHAR}},
+            </if>
+            <if test="status!=null">
+                status = #{status,jdbcType=CHAR}},
+            </if>
+            <if test="updateTime!=null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP}},
+            </if>
+        </set>
+
+        WHERE user_id = #{userId,jdbcType=BIGINT}
     </update>
 
     <delete id="delete"  parameterType ="com.xcd.bd.entity.TUserInfo">

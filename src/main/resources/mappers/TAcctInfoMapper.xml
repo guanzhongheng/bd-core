@@ -28,6 +28,8 @@
         </where>
     </select>
 
+
+
     <select id="findAllList" resultMap="tAcctInfoResultMap">
         SELECT *
         FROM T_ACCT_INFO

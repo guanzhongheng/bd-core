@@ -13,8 +13,13 @@ public class TUserInfo implements Serializable {
     private String userName;
     private String password;
     private String address;
+    //联系人电话
+    private String phone;
+    //收货人姓名
+    private String recieveName;
     private String invCode;
     private String attachUrl;
+    private Character status;
     private Date createTime;
     private Date updateTime;
 
@@ -68,6 +73,30 @@ public class TUserInfo implements Serializable {
 
     public String getAttachUrl() {
         return attachUrl;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRecieveName() {
+        return recieveName;
+    }
+
+    public void setRecieveName(String recieveName) {
+        this.recieveName = recieveName;
+    }
+
+    public Character getStatus() {
+        return status;
+    }
+
+    public void setStatus(Character status) {
+        this.status = status;
     }
 
     public void setCreateTime(Date createTime) {

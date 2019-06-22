@@ -11,12 +11,28 @@ package com.xcd.bd.mode.vo;
  * lijinku          2019/06/21    create
  */
 public class UserVo {
+    private Long userId;
     //电子邮箱
     private String userName;
     //登录密码
     private String password;
     //邀请码
     private String invCode;
+    private String address;
+    //联系人电话
+    private String phone;
+    //收货人姓名
+    private String recieveName;
+    //充值地址
+    private String attachUrl;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;
@@ -40,5 +56,37 @@ public class UserVo {
 
     public void setInvCode(String invCode) {
         this.invCode = invCode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRecieveName() {
+        return recieveName;
+    }
+
+    public void setRecieveName(String recieveName) {
+        this.recieveName = recieveName;
+    }
+
+    public String getAttachUrl() {
+        return attachUrl;
+    }
+
+    public void setAttachUrl(String attachUrl) {
+        this.attachUrl = attachUrl;
     }
 }

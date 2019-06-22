@@ -21,6 +21,11 @@ public class TUserInfoController {
     @Autowired
     private IUserInfoService userInfoService;
 
+    @RequestMapping("/")
+    public String index(){
+        return "index";
+    }
+
     @RequestMapping("/registry")
     @ResponseBody
     public AjaxResult doReregistry(@RequestBody UserVo userVo) {
@@ -52,6 +57,12 @@ public class TUserInfoController {
         return result;
     }
 
+
+    @RequestMapping("/update")
+    public String doUpdate(@RequestBody UserVo userVo){
+        return "index";
+    }
+
     @RequestMapping(value = {"/list", ""}, method = RequestMethod.GET)
     public Object list() {
         List<TUserInfo> tUserInfos = userInfoService.findAllList();
@@ -78,8 +89,8 @@ public class TUserInfoController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@RequestBody TUserInfo tUserInfo) {
-        if (userInfoService.update(tUserInfo) > 0) {
+    public String update(@RequestBody UserVo vo) {
+        if (userInfoService.update(vo) > 0) {
             return "success";
         } else {
             return "failed";

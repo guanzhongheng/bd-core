@@ -19,7 +19,7 @@ public interface IUserInfoService {
 
     int insertBatch(List<TUserInfo> tUserInfos);
 
-    int update(TUserInfo tUserInfo);
+    int update(UserVo vo);
 
     int delete(TUserInfo tUserInfo);
 

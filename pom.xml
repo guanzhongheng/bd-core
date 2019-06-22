@@ -83,15 +83,26 @@
 			<version>3.3.2</version>
 		</dependency>
 		<!--表格导出-->
+		<!--表格导出-->
 		<dependency>
-			<groupId>net.sf.jxls</groupId>
-			<artifactId>jxls-core</artifactId>
-			<version>1.0.5</version>
+			<groupId>org.jxls</groupId>
+			<artifactId>jxls</artifactId>
+			<version>[2.6.0-SNAPSHOT,)</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.jxls</groupId>
+			<groupId>org.jxls</groupId>
+			<artifactId>jxls-poi</artifactId>
+			<version>[1.2.0-SNAPSHOT,)</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jxls</groupId>
+			<artifactId>jxls-jexcel</artifactId>
+			<version>[1.0.8,)</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jxls</groupId>
 			<artifactId>jxls-reader</artifactId>
-			<version>1.0.6</version>
+			<version>[2.0.5,)</version>
 		</dependency>
 
 
@@ -134,6 +145,21 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
