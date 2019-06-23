@@ -5,7 +5,6 @@ import com.xcd.bd.shiro.SystemAuthorizingRealm;
 import net.sf.ehcache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -64,10 +63,13 @@ public class ShiroConfiguration {
          */
         filterChainMap.put("/css/**", "anon");
         filterChainMap.put("/js/**", "anon");
-        filterChainMap.put("/admin/register", "anon");
+        filterChainMap.put("/register", "anon");
+        filterChainMap.put("/check", "anon");
+
         filterChainMap.put("/mobile/login", "anon");
         filterChainMap.put("/mobile/register", "anon");
-        filterChainMap.put("/**", "authc");
+        //filterChainMap.put("/**", "authc");
+        filterChainMap.put("/**", "anon");
         factoryBean.setFilterChainDefinitionMap(filterChainMap);
     }
 

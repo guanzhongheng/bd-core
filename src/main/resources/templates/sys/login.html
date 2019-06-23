@@ -37,22 +37,23 @@
 
         <form class="m-t" role="form" action="">
             <div class="form-group">
-                <input type="email" class="form-control" placeholder="用户名" required="required">
+                <input type="email" class="form-control" placeholder="用户名" id="USERNAME" name="USERNAME" required="required">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="密码" required="required">
+                <input type="password" class="form-control" placeholder="密码" id="PASSWORD" name="PASSWORD" required="required">
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+            <button type="button" onclick="check()" class="btn btn-primary block full-width m-b">登 录</button>
 
             <p></p>
             <p class="text-muted text-center">
                 <small>没有账户？</small>
-                <a href="/admin/register">点此注册</a>
+                <a href="/register">点此注册</a>
             </p>
 
         </form>
     </div>
 </div>
-<script th:href="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bd/login.js}"></script>
 </body>
 </html>
