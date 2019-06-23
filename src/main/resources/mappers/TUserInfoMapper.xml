@@ -5,12 +5,14 @@
     <resultMap id="tUserInfoResultMap" type="com.xcd.bd.entity.TUserInfo">
         <id column="user_id" property="userId" jdbcType="BIGINT"/> 
         <result column="user_name" property="userName" jdbcType="VARCHAR"/> 
-        <result column="password" property="password" jdbcType="VARCHAR"/> 
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/> 
         <result column="inv_code" property="invCode" jdbcType="VARCHAR"/> 
         <result column="attach_url" property="attachUrl" jdbcType="VARCHAR"/> 
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
         <result column="recieve_name" property="recieveName" jdbcType="VARCHAR"/>
+        <result column="reciever_phone" property="recieverPhone" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="CHAR"/>
         <result column="ship_status" property="shipStatus" jdbcType="CHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
@@ -96,16 +98,16 @@
             update_time
         )
         VALUES
-        <foreach collection ="list" item="tUserInfo" separator =",">
+        <foreach collection ="list" item="item" separator =",">
         (
-            #{tUserInfo.userId,jdbcType=BIGINT},
-            #{tUserInfo.userName,jdbcType=VARCHAR},
-            #{tUserInfo.password,jdbcType=VARCHAR},
-            #{tUserInfo.address,jdbcType=VARCHAR},
-            #{tUserInfo.invCode,jdbcType=VARCHAR},
-            #{tUserInfo.attachUrl,jdbcType=VARCHAR},
-            #{tUserInfo.createTime,jdbcType=TIMESTAMP},
-            #{tUserInfo.updateTime,jdbcType=TIMESTAMP}
+            #{item.userId,jdbcType=BIGINT},
+            #{item.userName,jdbcType=VARCHAR},
+            #{item.password,jdbcType=VARCHAR},
+            #{item.address,jdbcType=VARCHAR},
+            #{item.invCode,jdbcType=VARCHAR},
+            #{item.attachUrl,jdbcType=VARCHAR},
+            #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP}
         )
         </foreach>
     </insert>
@@ -117,25 +119,31 @@
                 password = #{password,jdbcType=VARCHAR},
             </if>
             <if test="address!=null">
-                address = #{address,jdbcType=VARCHAR}},
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="realName!=null">
+                real_name = #{realName,jdbcType=VARCHAR},
             </if>
             <if test="attachUrl!=null">
-                attach_url = #{attachUrl,jdbcType=VARCHAR}},
+                attach_url = #{attachUrl,jdbcType=VARCHAR},
             </if>
             <if test="phone!=null">
-                phone = #{phone,jdbcType=VARCHAR}},
+                phone = #{phone,jdbcType=VARCHAR},
             </if>
             <if test="recieveName!=null">
-                recieve_name = #{recieveName,jdbcType=VARCHAR}},
+                recieve_name = #{recieveName,jdbcType=VARCHAR},
+            </if>
+            <if test="recieverPhone!=null">
+                reciever_phone = #{recieverPhone,jdbcType=VARCHAR},
             </if>
             <if test="status!=null">
-                status = #{status,jdbcType=CHAR}},
+                status = #{status,jdbcType=CHAR},
             </if>
             <if test="shipStatus!=null">
-                ship_status = #{shipStatus,jdbcType=CHAR}},
+                ship_status = #{shipStatus,jdbcType=CHAR},
             </if>
             <if test="updateTime!=null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP}},
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
 

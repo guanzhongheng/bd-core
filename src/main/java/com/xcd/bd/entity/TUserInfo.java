@@ -17,6 +17,8 @@ public class TUserInfo implements Serializable {
     private String phone;
     //收货人姓名
     private String recieveName;
+    //收货人联系电话
+    private String recieverPhone;
     private String invCode;
     private String attachUrl;
     private Character status;
@@ -99,6 +101,14 @@ public class TUserInfo implements Serializable {
 
     public void setShipStatus(Character shipStatus) {
         this.shipStatus = shipStatus;
+    }
+
+    public String getRecieverPhone() {
+        return recieverPhone;
+    }
+
+    public void setRecieverPhone(String recieverPhone) {
+        this.recieverPhone = recieverPhone;
     }
 
     public Character getStatus() {

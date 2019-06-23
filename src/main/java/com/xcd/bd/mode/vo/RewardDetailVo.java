@@ -13,6 +13,8 @@ package com.xcd.bd.mode.vo;
 public class RewardDetailVo {
     private Long userId;
     private String userName;
+    private String realName;
+    private String phone;
     private Double avalAmount;
     private Double cnstAmount;
 
@@ -30,6 +32,22 @@ public class RewardDetailVo {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Double getAvalAmount() {

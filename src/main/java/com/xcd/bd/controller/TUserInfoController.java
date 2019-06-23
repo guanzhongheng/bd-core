@@ -4,13 +4,12 @@ import com.xcd.bd.entity.TUserInfo;
 import com.xcd.bd.mode.vo.AjaxResult;
 import com.xcd.bd.mode.vo.UserVo;
 import com.xcd.bd.service.IUserInfoService;
-import com.xcd.bd.utils.Md5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Author ljk
@@ -28,7 +27,7 @@ public class TUserInfoController {
 
     @RequestMapping("/user/register")
     @ResponseBody
-    public AjaxResult doReregistry(@RequestBody UserVo userVo) {
+    public AjaxResult doReregistry(UserVo userVo) {
         AjaxResult result = new AjaxResult();
         result.setSuccess(false);
         if (userVo == null || StringUtils.isEmpty(userVo.getUserName()) || StringUtils.isEmpty(userVo.getPassword())) {
