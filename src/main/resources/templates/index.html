@@ -1,13 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>my first web page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人资料管理</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link th:href="@{/css/bootstrap.min14ed.css}"  rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min93e3.css}"  rel="stylesheet">
+    <link th:href="@{/css/plugins/bootstrap-table/bootstrap-table.min.css}"  rel="stylesheet">
+    <link th:href="@{/css/animate.min.css}"  rel="stylesheet">
+    <link th:href="@{/css/style.min862f.css}" rel="stylesheet">
 </head>
-<body>
-  <h1>my first web page</h1>
-  <form method="get" action="/export/recieverAdressList">
-      <input type="submit" value="提交">
-  </form>
+
+<body class="gray-bg">
+<!-- 页面展示主体 -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#tab-1" aria-expanded="true">个人信息</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-2" aria-expanded="false">R账号资料完善</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-3" aria-expanded="false">地址信息</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">&nbsp;密&nbsp;码:</span>
+                                            <input type="text" class="form-control" id="newPassword" placeholder="新密码">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">确认密码:</span>
+                                            <input type="text" class="form-control" id="newPassword2" placeholder="确认新密码">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit" onclick="savePassword()">修改</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">R交易所认证姓名:</span>
+                                            <input type="text" class="form-control" id="realName" placeholder="姓名">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">R交易所认证手机:</span>
+                                            <input type="text" class="form-control" id="phone" placeholder="联系方式">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit" onclick="saveUser()">保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-3" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">&nbsp;收&nbsp;货&nbsp;人:</span>
+                                            <input type="text" class="form-control" id="receiverName" placeholder="姓名">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">收获联系方式:</span>
+                                            <input type="text" class="form-control" id="receiverPhone" placeholder="联系方式">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">收获人地址:</span>
+                                            <input type="text" class="form-control" id="receiverAddress" placeholder="联系方式">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit" onclick="saveAddress()">保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/jquery.min.js}" ></script>
+<script th:src="@{/js/bootstrap.min.js}" ></script>
+<script th:src="@{/js/content.min.js}" ></script>
+<script th:src="@{/js/plugins/bootstrap-table/bootstrap-table.min.js}" ></script>
+<script th:src="@{/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js}" ></script>
+<script th:src="@{/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}" ></script>
+<script th:src="@{/js/bd/userManage.js}" ></script>
+
 </body>
+
 </html>

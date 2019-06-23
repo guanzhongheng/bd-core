@@ -65,11 +65,12 @@ public class ShiroConfiguration {
         filterChainMap.put("/js/**", "anon");
         filterChainMap.put("/register", "anon");
         filterChainMap.put("/check", "anon");
-
         filterChainMap.put("/mobile/login", "anon");
         filterChainMap.put("/mobile/register", "anon");
+
+        filterChainMap.put("/user/**", "authc");
         //filterChainMap.put("/**", "authc");
-        filterChainMap.put("/**", "anon");
+        filterChainMap.put("/**", "authc");
         factoryBean.setFilterChainDefinitionMap(filterChainMap);
     }
 

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -26,24 +28,22 @@
         </div>
         <div class="sidebar-collapse">
             <ul class="nav" id="side-menu">
-                <li>
-                    <a class="J_menuItem" href="#"><i class="fa fa-columns"></i> <span class="nav-label">个人资料</span></a>
+                <li th:if="${user.userType} eq '1'">
+                    <a class="J_menuItem" href="/user/userInfo"><i class="fa fa-columns"></i> <span class="nav-label">个人资料</span></a>
                 </li>
-                <li>
-                    <a class="J_menuItem" href="#"><i class="fa fa-desktop"></i> <span class="nav-label">注册激活</span></a>
-                </li>
-                <li>
-                    <a class="J_menuItem" href="#"><i class="fa fa-table"></i> <span class="nav-label">奖励列表</span></a>
+                <li th:if="${user.userType} eq '1'">
+                    <a class="J_menuItem" href="/user/rewardInfo"><i class="fa fa-table"></i> <span class="nav-label">奖励列表</span></a>
                 </li>
 
-                <li>
-                    <a class="J_menuItem" href="#"><i class="fa fa-table"></i> <span class="nav-label">用户列表</span></a>
+                <li th:if="${user.userType} eq '0'">
+                    <a class="J_menuItem" href="/user/userList"><i class="fa fa-table"></i> <span class="nav-label">用户列表</span></a>
                 </li>
-                <li>
-                    <a class="J_menuItem" href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">R账号列表</span></a>
+                <li th:if="${user.userType} eq '0'">
+                    <a class="J_menuItem" href="/user/transferList"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">R账号列表</span></a>
                 </li>
-
             </ul>
+
+
         </div>
     </nav>
     <!--左侧导航结束-->
@@ -62,7 +62,7 @@
                     <li class="dropdown hidden-xs">
                         <a>
                             <i class="fa fa-user"></i>
-                            <span th:text="测试">-</span>
+                            <span th:text="${user.userName}">-</span>
                         </a>
                     </li>
                 </ul>
@@ -198,14 +198,14 @@
     </div>
 </div>
 
-<script th:src="@{/js/jquery.min.js?v=2.1.4}" src="../../static/js/jquery.min.js?v=2.1.4"></script>
-<script th:src="@{/js/bootstrap.min.js?v=3.3.6}" src="../../static/js/bootstrap.min.js?v=3.3.6"></script>
-<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}" src="../../static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}" src="../../static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script th:src="@{/js/plugins/layer/layer.min.js}" src="../../static/js/plugins/layer/layer.min.js"></script>
-<script th:src="@{/js/hplus.min.js?v=4.1.0}" src="../../static/js/hplus.min.js?v=4.1.0"></script>
-<script th:src="@{/js/contabs.min.js}" src="../../static/js/contabs.min.js" type="text/javascript"></script>
-<script th:src="@{/js/plugins/pace/pace.min.js}" src="../../static/js/plugins/pace/pace.min.js"></script>
+<script th:src="@{/js/jquery.min.js}" src="../static/js/jquery.min.js?v=2.1.4"></script>
+<script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js?v=3.3.6"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}" src="../static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}" src="../static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script th:src="@{/js/plugins/layer/layer.min.js}" src="../static/js/plugins/layer/layer.min.js"></script>
+<script th:src="@{/js/hplus.min.js}" src="../static/js/hplus.min.js?v=4.1.0"></script>
+<script th:src="@{/js/contabs.min.js}" src="../static/js/contabs.min.js" type="text/javascript"></script>
+<script th:src="@{/js/plugins/pace/pace.min.js}" src="../static/js/plugins/pace/pace.min.js"></script>
 </body>
 
 </html>

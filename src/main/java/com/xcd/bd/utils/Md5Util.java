@@ -27,7 +27,7 @@ public class Md5Util {
     }
     public static void main(String args[]){
 
-        System.out.println(MD5("yzh1688"));
+        System.out.println(encryptionPassWord("admin","123"));
 
     }
     public final static String MD5(String pwd) {

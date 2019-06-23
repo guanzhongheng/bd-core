@@ -21,7 +21,7 @@ function check() {
                         bg : '#68B500',
                         time : 10
                     });
-                    window.location.href = "/main/index";
+                    window.location.href = "/index";
                 } else if ("usererror" == data.result) {
                     $("#USERNAME").tips({
                         side : 2,

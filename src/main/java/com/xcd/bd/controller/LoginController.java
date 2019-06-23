@@ -1,6 +1,7 @@
 package com.xcd.bd.controller;
 
 import com.xcd.bd.entity.TUserInfo;
+import com.xcd.bd.utils.Md5Util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -10,8 +11,10 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,18 +29,31 @@ public class LoginController {
         return "sys/login";
     }
 
+    @RequestMapping("/")
+    public String firstIndex(){
+        return "/main";
+    }
+
+    @RequestMapping("/index")
+    public String index(Model model){
+        Subject subject = SecurityUtils.getSubject();
+        TUserInfo userBo = (TUserInfo) subject.getPrincipal();
+        userBo.setUserType('0');
+        model.addAttribute("user",userBo);
+        return "main";
+    }
+
+
     @RequestMapping(value="/check" ,produces="application/json;charset=UTF-8")
     @ResponseBody
     public Object check(String userName,String password)throws Exception{
         Map<String,String> map = new HashMap<String,String>();
         String errInfo = "success";
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, password);
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, Md5Util.encryptionPassWord(userName,password));
         Subject subject = SecurityUtils.getSubject();
         String message = null;
         try {
             subject.login(usernamePasswordToken); // 完成登录
-            TUserInfo userBo = (TUserInfo) subject.getPrincipal();
-            return "redirect:/index";
         } catch (UnknownAccountException e) {
             logger.error(e.getMessage());
             errInfo = "无效的账户";
@@ -55,8 +71,7 @@ public class LoginController {
             usernamePasswordToken.clear();
             errInfo = "usererror";
         }
-
-            map.put("result",errInfo);
+        map.put("result",errInfo);
         return map;
     }
 

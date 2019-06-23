@@ -27,7 +27,15 @@ public class TUserInfo implements Serializable {
     private Character shipStatus;
     private Date createTime;
     private Date updateTime;
+    private Character userType;
 
+    public Character getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Character userType) {
+        this.userType = userType;
+    }
 
     public String getRealName() {
         return realName;

@@ -50,5 +50,4 @@ public class ExcelExPortController {
         return new ModelAndView(
                 new JxlsExcelView(TEMPLATE_PATH + "RECIEVE_INF_EXPORT.xlsx", "收货清单-" + DateUtil.date2Str(new Date(), "yyyy-MM-dd"), context));
     }
-
 }
