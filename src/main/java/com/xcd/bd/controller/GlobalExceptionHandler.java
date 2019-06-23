@@ -1,5 +1,6 @@
 package com.xcd.bd.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,14 +17,17 @@ import javax.servlet.http.HttpServletRequest;
  * ----------   ------------- -----------------------------------
  * lijinku          2019/06/23    create
  */
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
 
     @ExceptionHandler(Exception.class) // 所有的异常都是Exception子类
     public ModelAndView defaultErrorHandler(HttpServletRequest request, Exception e) { // 出现异常之后会跳转到此方法
         ModelAndView mav = new ModelAndView("/error"); // 设置跳转路径
 //        mav.addObject("code", -1); // 将异常对象传递过去
         mav.addObject("msg", "系统异常,请联系管理员！"); // 获得请求的路径
+        log.error("系统异常",e);
         return mav;
     }
 }

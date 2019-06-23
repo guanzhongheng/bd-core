@@ -13,6 +13,7 @@ public class TUserInfo implements Serializable {
     private String userName;
     private String password;
     private String address;
+    private String realName;
     //联系人电话
     private String phone;
     //收货人姓名
@@ -27,6 +28,14 @@ public class TUserInfo implements Serializable {
     private Date createTime;
     private Date updateTime;
 
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
 
     public TUserInfo() {
     }

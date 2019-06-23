@@ -9,6 +9,7 @@ import com.xcd.bd.entity.TRecommRelInfo;
 import com.xcd.bd.entity.TUserInfo;
 import com.xcd.bd.mode.vo.UserVo;
 import com.xcd.bd.service.IUserInfoService;
+import com.xcd.bd.utils.InvCodeGenUtil;
 import com.xcd.bd.utils.Md5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
         us.setAttachUrl(vo.getAttachUrl());
         if(vo.getAttachUrl()!=null){
             us.setStatus('1');
+            us.setInvCode(InvCodeGenUtil.toSerialCode(vo.getUserId()));
         }
         us.setCreateTime(current);
         return tUserInfoMapper.update(us);

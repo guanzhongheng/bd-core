@@ -43,7 +43,7 @@ public class ExcelExPortController {
     }
 
     @RequestMapping(value = "/export/recieverAdressList", method = RequestMethod.GET)
-    public ModelAndView recieverAdressExport(HttpServletResponse response, @RequestParam("status") char status) {
+    public ModelAndView recieverAdressExport() {
         List<TUserInfo> usList = extendService.findUnshipUserInf();
         Context context = new Context();
         context.putVar("usList", usList);
