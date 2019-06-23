@@ -7,6 +7,7 @@ import com.xcd.bd.service.IUserInfoService;
 import com.xcd.bd.utils.Md5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +16,7 @@ import java.util.List;
  * Author ljk
  * Date  2019-06-20
  */
-@RestController
-@RequestMapping(value = "/userInfo")
+@Controller
 public class TUserInfoController {
     @Autowired
     private IUserInfoService userInfoService;
@@ -26,7 +26,7 @@ public class TUserInfoController {
         return "index";
     }
 
-    @RequestMapping("/registry")
+    @RequestMapping("/user/register")
     @ResponseBody
     public AjaxResult doReregistry(@RequestBody UserVo userVo) {
         AjaxResult result = new AjaxResult();
@@ -60,50 +60,13 @@ public class TUserInfoController {
 
     @RequestMapping("/update")
     public String doUpdate(@RequestBody UserVo userVo){
+        int res = userInfoService.update(userVo);
+        if(res>0){
+            return "index";
+        }
         return "index";
     }
 
-    @RequestMapping(value = {"/list", ""}, method = RequestMethod.GET)
-    public Object list() {
-        List<TUserInfo> tUserInfos = userInfoService.findAllList();
-        return tUserInfos;
-    }
 
-
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public String insert(@RequestBody UserVo tUserInfo) {
-        if (userInfoService.insert(tUserInfo) > 0) {
-            return "success";
-        } else {
-            return "failed";
-        }
-    }
-
-    @RequestMapping(value = "/insertBatch", method = RequestMethod.POST)
-    public String insertBatch(@RequestBody List<TUserInfo> tUserInfos) {
-        if (userInfoService.insertBatch(tUserInfos) > 0) {
-            return "success";
-        } else {
-            return "failed";
-        }
-    }
-
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@RequestBody UserVo vo) {
-        if (userInfoService.update(vo) > 0) {
-            return "success";
-        } else {
-            return "failed";
-        }
-    }
-
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String delete(@RequestBody TUserInfo tUserInfo) {
-        if (userInfoService.delete(tUserInfo) > 0) {
-            return "success";
-        } else {
-            return "failed";
-        }
-    }
 
 }

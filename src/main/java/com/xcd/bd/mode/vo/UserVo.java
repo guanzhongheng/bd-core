@@ -16,6 +16,8 @@ public class UserVo {
     private String userName;
     //登录密码
     private String password;
+    //密码确认
+    private String confirmPassword;
     //邀请码
     private String invCode;
     private String address;
@@ -48,6 +50,14 @@ public class UserVo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getInvCode() {

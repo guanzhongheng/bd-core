@@ -108,4 +108,31 @@
         WHERE user_id = #{userId}
     </delete>
 
+
+    <update id="updateBatch" parameterType="java.util.List">
+        update T_ACCT_INFO
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="total_amount =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when USER_ID=#{item.userId} then total_amount+#{item.avalAmount}
+                </foreach>
+            </trim>
+
+            <trim prefix="total_amount =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when USER_ID=#{item.userId} then total_amount+#{item.totalAmount}
+                </foreach>
+            </trim>
+            <trim prefix="UPDATE_TIME =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when USER_ID=#{item.userId} then #{item.updateTime}
+                </foreach>
+            </trim>
+        </trim>
+        where USER_ID in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.userId,jdbcType=BIGINT}
+        </foreach>
+    </update>
+
 </mapper>

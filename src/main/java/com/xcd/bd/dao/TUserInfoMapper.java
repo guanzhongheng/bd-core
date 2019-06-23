@@ -1,7 +1,10 @@
 package com.xcd.bd.dao;
 
 import com.xcd.bd.entity.TUserInfo;
+import com.xcd.bd.mode.vo.UserVo;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,4 +31,7 @@ public interface TUserInfoMapper {
 
     Long findUserIdByInvCode(String invCode);
 
+    List<TUserInfo> findUserInfoByShipStatus(char shipStatus);
+
+    int updateShipStatusBatchByPrimaryKey(@Param("idList") List<Long> idList,@Param("shipStatus") Character shipStatsu,@Param("updateTime") Date updateTime);
 }

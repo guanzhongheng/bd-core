@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xcd.bd.dao.TExtendMapper">
-    <select id="selectRewadsByGtZero" resultType="com.xcd.bd.mode.vo.RewardDetailVo">
-        select ui.user_name userName,ac.aval_amount avalAmount,ac.aval_amount*ac.rate cnstAmount from T_ACCT_INFO ac LEFT JOIN T_USER_INFO ui on ac.user_id=ui.user_id where ac.aval_amount>0
+    <select id="selectGtZeroRewadsByStatus"  parameterType="java.lang.Character" resultType="com.xcd.bd.mode.vo.RewardDetailVo">
+        select ui.user_id userId, ui.user_name userName,ac.aval_amount avalAmount,ac.aval_amount*ac.rate cnstAmount from T_ACCT_INFO ac LEFT JOIN T_USER_INFO ui on ac.user_id=ui.user_id where ui.status=#{status,jdbcType=CHAR} and ac.aval_amount>0
+    </select>
+
+    <select id="findRecommInfoByUserId" parameterType="java.lang.Long" resultType="com.xcd.bd.mode.vo.RecommRelVo">
+        select u.user_name recommUserName, rr.create_time createTime from T_RECOMM_REL_INFO rr LEFT JOIN T_USER_INFO u on rr.recomm_user_id=u.user_id where rr.user_id=#{userId,jdbcType=BIGINT}
     </select>
 </mapper>

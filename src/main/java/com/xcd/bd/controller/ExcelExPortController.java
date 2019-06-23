@@ -33,7 +33,7 @@ public class ExcelExPortController {
 
     @RequestMapping(value = "/export/bscList",method = RequestMethod.GET)
     public ModelAndView productDesinExport(HttpServletResponse response){
-        List<RewardDetailVo> bscList = extendService.selectRewadsByGtZero();
+        List<RewardDetailVo> bscList = extendService.selectGtZeroRewadsByUserStatus();
         Context context = new Context();
         context.putVar("bscList", bscList);
         return new ModelAndView(

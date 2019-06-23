@@ -24,9 +24,6 @@ import java.util.Map;
 @Configuration
 public class ShiroConfiguration {
 
-    @Autowired
-
-
     /**
      * ShiroFilterFactoryBean 处理拦截资源文件问题
      * 注意：单独一个ShiroFilterFactoryBean配置是或报错的，因为在

@@ -49,6 +49,8 @@ public class UserInfoServiceImpl implements IUserInfoService {
         TUserInfo tUserInfo = new TUserInfo();
         tUserInfo.setUserName(vo.getUserName());
         tUserInfo.setPassword(Md5Util.encryptionPassWord(vo.getUserName(), vo.getPassword()));
+        tUserInfo.setShipStatus('0');
+        tUserInfo.setStatus('0');
         tUserInfo.setCreateTime(current);
         int res = tUserInfoMapper.insert(tUserInfo);
         if (res > 0) {

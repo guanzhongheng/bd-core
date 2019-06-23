@@ -20,6 +20,8 @@ public class TUserInfo implements Serializable {
     private String invCode;
     private String attachUrl;
     private Character status;
+    //发货状态
+    private Character shipStatus;
     private Date createTime;
     private Date updateTime;
 
@@ -89,6 +91,14 @@ public class TUserInfo implements Serializable {
 
     public void setRecieveName(String recieveName) {
         this.recieveName = recieveName;
+    }
+
+    public Character getShipStatus() {
+        return shipStatus;
+    }
+
+    public void setShipStatus(Character shipStatus) {
+        this.shipStatus = shipStatus;
     }
 
     public Character getStatus() {

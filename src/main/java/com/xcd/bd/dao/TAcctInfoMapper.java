@@ -24,4 +24,5 @@ public interface TAcctInfoMapper {
 
     int delete(TAcctInfo tAcctInfo);
 
+    int updateBatch(List<TAcctInfo> acctList);
 }

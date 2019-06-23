@@ -12,6 +12,7 @@
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
         <result column="recieve_name" property="recieveName" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="ship_status" property="shipStatus" jdbcType="CHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/> 
     </resultMap>
@@ -28,6 +29,12 @@
         FROM T_USER_INFO
         <where>
         </where>
+    </select>
+
+    <select id="findUserInfoByShipStatus" parameterType="java.lang.Character" resultMap="tUserInfoResultMap">
+        SELECT *
+        FROM T_USER_INFO
+        where ship_status=#{shipStatus,jdbcType=CHAR}
     </select>
 
     <select id="findByUserName" parameterType="java.lang.String" resultMap="tUserInfoResultMap">
@@ -59,6 +66,7 @@
             inv_code,
             attach_url,
             status,
+            ship_status,
             create_time,
             update_time
         )
@@ -70,6 +78,7 @@
             #{invCode,jdbcType=VARCHAR},
             #{attachUrl,jdbcType=VARCHAR},
             #{status,jdbcType=CHAR},
+            #{shipStatus,jdbcType=CHAR},
             #{createTime,jdbcType=TIMESTAMP},
             #{updateTime,jdbcType=TIMESTAMP}
         )
@@ -122,12 +131,27 @@
             <if test="status!=null">
                 status = #{status,jdbcType=CHAR}},
             </if>
+            <if test="shipStatus!=null">
+                ship_status = #{shipStatus,jdbcType=CHAR}},
+            </if>
             <if test="updateTime!=null">
                 update_time = #{updateTime,jdbcType=TIMESTAMP}},
             </if>
         </set>
 
         WHERE user_id = #{userId,jdbcType=BIGINT}
+    </update>
+
+
+    <update id="updateShipStatusBatchByPrimaryKey" parameterType="java.util.Map">
+        update T_USER_INFO
+        set
+        ship_status = #{shipStatus,jdbcType=CHAR},
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+        where USER_ID in
+        <foreach collection="idList" index="index" item="item" separator="," open="(" close=")">
+            #{item,jdbcType=BIGINT}
+        </foreach>
     </update>
 
     <delete id="delete"  parameterType ="com.xcd.bd.entity.TUserInfo">
