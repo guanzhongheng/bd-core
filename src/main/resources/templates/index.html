@@ -16,6 +16,68 @@
 <div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-sm-12">
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="ibox-title" th:if="${us.status} eq '0'">
+                        <span class="label label-info pull-right">未激活</span>
+                        <span class="label label-info pull-right">已激活</span>
+                        <h5>个人信息</h5>
+                    </div>
+                    <div class="ibox-title" th:if="${us.status} eq '1'">
+                        <span class="label label-info pull-right">激活</span>
+                        <h5>个人信息</h5>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">真实姓名:</label>
+                                    <label class="col-sm-3 control-label" th:text="${us.realName==null}?'':${us.realName}"/></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">联系方式:</label>
+                                    <label class="col-sm-3 control-label" th:text="${us.phone==null}?'':${us.phone}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">收货人姓名:</label>
+                                    <label class="col-sm-3 control-label" th:text="${us.recieverName==null}?'':${us.recieverName}"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">收货人联系电话:</label>
+                                    <label class="col-sm-3 control-label"th:text="${us.recieverPhone==null}?'':${us.recieverPhone}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">收货人地址:</label>
+                                    <label class="col-sm-3 control-label"  th:text="${us.recieverAddress==null}?'':${us.recieverAddress}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+    <div class="row">
+        <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <span class="label label-primary pull-right">待同步额度</span>
@@ -53,7 +115,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

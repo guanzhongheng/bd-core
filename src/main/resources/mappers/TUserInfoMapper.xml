@@ -47,7 +47,7 @@
     <select id="findUserInfoByShipStatus" parameterType="java.lang.Character" resultMap="tUserInfoResultMap">
         SELECT *
         FROM T_USER_INFO
-        where ship_status=#{shipStatus,jdbcType=CHAR}
+        where ship_status=#{shipStatus,jdbcType=CHAR} and reciever_address is not null and reciever_name is not null and  reciever_phone is not null
     </select>
 
     <select id="findByUserName" parameterType="java.lang.String" resultMap="tUserInfoResultMap">
