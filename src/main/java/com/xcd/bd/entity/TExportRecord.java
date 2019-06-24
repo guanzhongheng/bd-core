@@ -20,6 +20,7 @@ public class TExportRecord implements Serializable {
     private Double amount;
     private Character status;
     private Date createTime;
+    private Date updateTime;
 
     public Long getId() {
         return id;
@@ -59,5 +60,13 @@ public class TExportRecord implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

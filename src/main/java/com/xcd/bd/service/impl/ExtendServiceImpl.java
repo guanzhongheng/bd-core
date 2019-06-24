@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,6 +46,19 @@ public class ExtendServiceImpl implements IExtendService {
 
     @Override
     public List<RewardDetailVo> selectGtZeroRewadsByUserStatus(char status) {
+        List<RewardDetailVo> rewardDetailVos = extendMapper.selectGtZeroRewadsByStatus(status);
+        if(rewardDetailVos!=null && !rewardDetailVos.isEmpty()){
+            Date current = new Date();
+            List<TExportRecord> exRecords = rewardDetailVos.stream().map(rd -> {
+                TExportRecord record = new TExportRecord();
+                record.setUserId(rd.getUserId());
+                record.setAmount(rd.getAvalAmount());
+                record.setStatus('0');
+                record.setCreateTime(current);
+                return record;
+            }).collect(Collectors.toList());
+            exportRecordMapper.insertBatch(exRecords);
+        }
         return extendMapper.selectGtZeroRewadsByStatus(status);
     }
 

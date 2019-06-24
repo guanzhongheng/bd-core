@@ -2,10 +2,7 @@ package com.xcd.bd.controller;
 
 import com.xcd.bd.entity.BaseTable;
 import com.xcd.bd.entity.TUserInfo;
-import com.xcd.bd.mode.vo.AjaxResult;
-import com.xcd.bd.mode.vo.RecommRelVo;
-import com.xcd.bd.mode.vo.RewardDetailVo;
-import com.xcd.bd.mode.vo.UserVo;
+import com.xcd.bd.mode.vo.*;
 import com.xcd.bd.service.IExtendService;
 import com.xcd.bd.service.IUserInfoService;
 import com.xcd.bd.utils.Md5Util;
@@ -201,6 +198,16 @@ public class TUserInfoController {
             result.setMsg("系统异常，修改密码失败！");
         }
         return result;
+    }
+
+    @RequestMapping("/user/doFindUndealRewads")
+    @ResponseBody
+    public BaseTable findUndealRewards(){
+        BaseTable table = new BaseTable();
+        List<RewardVo> list = service.findUndealRewards();
+        table.setRows(list);
+        table.setTotal(list.size());
+        return table;
     }
 
 }

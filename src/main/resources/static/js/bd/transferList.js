@@ -2,7 +2,7 @@ var TRANSFERLIST = {
 
     initTable : function () {
         $('#userListTable').bootstrapTable({
-            url : "",
+            url : "/user/doFindUndealRewads",
             method : 'post',
             contentType : "application/x-www-form-urlencoded",
             singleSelect : false,
@@ -36,17 +36,17 @@ var TRANSFERLIST = {
                 },
                 {
                     title : "用户账号",
-                    field : 'recommUserName',
+                    field : 'userName',
                     align : 'center'
                 },
                 {
                     title : "用户余额",
-                    field : 'createTime',
+                    field : 'amount',
                     align : 'center'
                 },
                 {
                     title : "用户二维码",
-                    field : 'createTime',
+                    field : 'attachUrl',
                     align : 'center',
                     formatter:function (value,row,index) {
                         return processPageDiv(row);
@@ -68,7 +68,7 @@ var TRANSFERLIST = {
 function updateUser(id,amount,userId) {
     $.ajax({
         type: "POST",
-        url: '/user/updateRecieverInfo',
+        url: '/user/updateUserReward',
         data: {
             id: id,
             userId: userId,
@@ -78,7 +78,7 @@ function updateUser(id,amount,userId) {
         cache: false,
         success: function (data) {
             debugger;
-            if (data.success()) {
+            if (data.success) {
                 $('#userListTable').bootstrapTable("refresh");
             } else {
                 toastr.error("保存失败");
