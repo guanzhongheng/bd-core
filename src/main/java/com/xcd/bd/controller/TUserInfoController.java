@@ -163,10 +163,13 @@ public class TUserInfoController {
 
     @RequestMapping("/user/searchRecomInfo")
     @ResponseBody
-    public List<RecommRelVo> findRecommInfoByUserId() {
+    public BaseTable findRecommInfoByUserId() {
+        BaseTable table = new BaseTable();
         Subject subject = SecurityUtils.getSubject();
         TUserInfo userBo = (TUserInfo) subject.getPrincipal();
-        return service.findRecommInfoByUserId(userBo.getUserId());
+        List<RecommRelVo> list = service.findRecommInfoByUserId(userBo.getUserId());
+        table.setRows(list);
+        return table;
     }
 
     @RequestMapping("/user/updateUserReward")
