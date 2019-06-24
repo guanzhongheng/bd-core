@@ -22,7 +22,7 @@
                     <h5>未到帐交易所金额</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins" th:text="${acc.avalCnstAmount}"/>
+                    <h1 class="no-margins" th:text="${acc.avalCnstAmount==null}?0:${acc.avalCnstAmount}"/>
                     <small>待到账交易所金额</small>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     <h5>可用BSC</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins" th:text="${acc.avalAmount}"/>
+                    <h1 class="no-margins" th:text="${acc.avalAmount==null}?0:${acc.avalAmount}"/>
                     <small>可用收入</small>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <h5>总BSC</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins" th:text="${acc.totalAmount}"/>
+                    <h1 class="no-margins" th:text="${acc.totalAmount==null}?0:${acc.totalAmount}"/>
                     <small>总收入</small>
                 </div>
             </div>

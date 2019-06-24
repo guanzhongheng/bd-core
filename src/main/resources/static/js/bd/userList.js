@@ -58,7 +58,8 @@ var USERLIST = {
                     field : 'createTime',
                     align : 'center',
                     formatter:function (value,row,index) {
-                        var edit = '<button type="button" class="btn btn-primary btn-xs" onclick="jhClick(\'' + row.userName + '\')">激活</button> ';
+                        var edit = '<button type="button" class="btn btn-primary btn-xs" onclick="jhClick(' + row.userId + ')">激活</button> ';
+                        return edit;
                     }
                 }]
         });
@@ -69,14 +70,19 @@ function queryIncomeTrade() {
     $('#userListTable').bootstrapTable("refresh")
 }
 
+function jhClick(userId) {
+    debugger;
+    if(userId != null && userId != '' && userId != undefined){
+
+    }
+}
 
 function processPageDiv(row){
-
       var html =  '<div class="panel panel-info">' +
           '<div class="panel-body" style="text-align: center;">' +
           '<div class="row">' +
           '<div class="col-sm-12 col-md-12" id="image">' +
-          '<img class="updateimg img-responsive" src="'+row.imgAddress+'" style="width: inherit;height: 210px;"/>' +
+          '<img class="updateimg img-responsive" src="'+row+'" style="width: inherit;height: 210px;"/>' +
           '</div></div></div></div>';
       return html;
 }

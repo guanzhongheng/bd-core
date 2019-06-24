@@ -33,7 +33,7 @@ public class LoginController {
         return "/main";
     }
 
-    @RequestMapping("/index")
+    @RequestMapping("/main")
     public String index(Model model){
         Subject subject = SecurityUtils.getSubject();
         TUserInfo userBo = (TUserInfo) subject.getPrincipal();
@@ -78,7 +78,6 @@ public class LoginController {
     public String register(){
         return "sys/register";
     }
-
 
 }
 
