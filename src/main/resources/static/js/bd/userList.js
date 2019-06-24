@@ -60,7 +60,6 @@ var USERLIST = {
                             var edit = '<button style="width: 55px;height: 35px" type="button" class="btn btn-primary btn-xs" onclick="jhClick(' + row.userId + ')">激活</button> ';
                             return edit;
                         }
-
                     }
                 }]
         });
