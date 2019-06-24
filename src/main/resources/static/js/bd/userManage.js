@@ -82,7 +82,7 @@ var USERMANAGE = {
     initImg: function () {
         var url = $("#imgAddress").val();
         $("#uploadImage").fileinput({
-            url: "/security/company/uploadFile",
+            url: "/pic/upload",
             dataType: 'json',
             autoUpload: false,
             acceptFileTypes: /(gif|jpe?g|png)$/i,
@@ -106,6 +106,27 @@ var USERMANAGE = {
                 return;
             }
         });
+    },
+
+    initNewImg : function () {
+
+        $("#uploadfile").fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: "/apk_upload", //上传的地址
+            uploadAsync: true, //默认异步上传
+            showUpload: true, //是否显示上传按钮
+            showRemove : true, //显示移除按钮
+            showPreview : true, //是否显示预览
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            dropZoneEnabled: false,//是否显示拖拽区域
+            maxFileCount: 1, //表示允许同时上传的最大文件个数
+            enctype: 'multipart/form-data',
+            validateInitialCount:true
+        }).on('filepreupload', function(event, data, previewId, index) {
+            debugger;
+            toastr.success("上传成功！")
+        });
     }
 }
 
@@ -113,4 +134,5 @@ var USERMANAGE = {
 
 $(document).ready(function () {
     USERMANAGE.initImg();
+    USERMANAGE.initNewImg();
 })

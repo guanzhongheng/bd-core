@@ -5,10 +5,14 @@ import com.xcd.bd.utils.CollectionsFactory;
 import com.xcd.bd.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
@@ -26,7 +30,11 @@ public class PictureController {
 	private IPictureService pictureService;
 	
 	@RequestMapping("/pic/upload")
-	public String pictureUpload(MultipartFile uploadFile) throws Exception{
+	public String pictureUpload(HttpServletRequest request,HttpServletResponse response) throws Exception{
+
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		// 获得文件：
+		MultipartFile uploadFile= multipartRequest.getFile("file_data");
 		Map<String,Object> result = pictureService.uploadPicture(uploadFile);
 		//为了保证功能的兼容性，需要把Result转换成json格式的字符串。
 		String json = JsonUtils.objectToJson(result);
@@ -41,4 +49,14 @@ public class PictureController {
 		String json = JsonUtils.objectToJson(result);
 		return json;
 	}
+
+	@RequestMapping("/pic/upload2")
+	public String pictureUpload2(HttpServletRequest request,HttpServletResponse response) throws Exception{
+	//	Map<String,Object> result = pictureService.uploadPicture(uploadFile);
+		//为了保证功能的兼容性，需要把Result转换成json格式的字符串。
+		String json = JsonUtils.objectToJson(null);
+		return json;
+	}
+
+
 }
