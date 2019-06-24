@@ -47,10 +47,55 @@ var TRANSFERLIST = {
                 {
                     title : "用户二维码",
                     field : 'createTime',
-                    align : 'center'
+                    align : 'center',
+                    formatter:function (value,row,index) {
+                        return processPageDiv(row);
+                    }
+                },
+                {
+                    title : "操作",
+                    field : 'operator',
+                    align : 'center',
+                    formatter:function (value,row,index) {
+                        var edit = '<button style="width: 55px;height: 35px" type="button" class="btn btn-primary btn-xs" onclick="updateUser(' + row.id + ',' + row.amount + ',' + row.userId + ')">激活</button> ';
+                        return edit;
+                    }
                 }]
         });
     }
+}
+
+function updateUser(id,amount,userId) {
+    $.ajax({
+        type: "POST",
+        url: '/user/updateRecieverInfo',
+        data: {
+            id: id,
+            userId: userId,
+            amount: amount
+        },
+        dataType: 'json',
+        cache: false,
+        success: function (data) {
+            debugger;
+            if (data.success()) {
+                $('#userListTable').bootstrapTable("refresh");
+            } else {
+                toastr.error("保存失败");
+            }
+        }
+    });
+}
+
+
+function processPageDiv(row){
+    var html =  '<div class="panel panel-info">' +
+        '<div class="panel-body" style="text-align: center;">' +
+        '<div class="row">' +
+        '<div class="col-sm-12 col-md-12" id="image">' +
+        '<img class="updateimg img-responsive" src="'+row+'" style="width: inherit;height: 210px;"/>' +
+        '</div></div></div></div>';
+    return html;
 }
 
 $(document).ready(function() {

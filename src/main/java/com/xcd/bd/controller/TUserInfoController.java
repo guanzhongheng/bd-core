@@ -169,4 +169,18 @@ public class TUserInfoController {
         return service.findRecommInfoByUserId(userBo.getUserId());
     }
 
+    @RequestMapping("/user/updateUserReward")
+    @ResponseBody
+    public AjaxResult updateUserReward(Long id,Long userId,Double amount) {
+        AjaxResult result = new AjaxResult();
+        result.setSuccess(false);
+        int res = service.dealTransaction(id,amount,userId);
+        if (res > 0) {
+            result.setSuccess(true);
+        } else {
+            result.setMsg("系统异常，修改密码失败！");
+        }
+        return result;
+    }
+
 }

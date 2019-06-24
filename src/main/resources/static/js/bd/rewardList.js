@@ -48,6 +48,8 @@ var REWARD = {
     }
 }
 
+
+
 $(document).ready(function() {
     REWARD.initTable();
 });

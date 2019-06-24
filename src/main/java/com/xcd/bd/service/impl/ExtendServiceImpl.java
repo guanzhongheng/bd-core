@@ -69,13 +69,13 @@ public class ExtendServiceImpl implements IExtendService {
 
     @Override
     public List<RewardDetailVo> selectListByUserStatus(String status) {
-        if (StringUtils.isEmpty(status)) {
+        if(StringUtils.isEmpty(status)){
             return extendMapper.selectGtZeroRewadsByStatus(null);
         } else {
             return extendMapper.selectGtZeroRewadsByStatus(status.toCharArray()[0]);
         }
-    }
 
+    }
 
     @Override
     public List<RewardVo> findUndealRewards() {

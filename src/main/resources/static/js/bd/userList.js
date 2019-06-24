@@ -46,24 +46,29 @@ var USERLIST = {
                     align : 'center'
                 },
                 {
-                    title : "二维码",
-                    field : 'recommUserName',
-                    align : 'center',
-                    formatter:function (value,row,index) {
-                        return processPageDiv(row);
-                    }
+                    title : "用户姓名",
+                    field : 'realName',
+                    align : 'center'
                 },
                 {
                     title : "操作",
                     field : 'createTime',
                     align : 'center',
                     formatter:function (value,row,index) {
-                        var edit = '<button type="button" class="btn btn-primary btn-xs" onclick="jhClick(' + row.userId + ')">激活</button> ';
+                        var edit = '<button style="width: 55px;height: 35px" type="button" class="btn btn-primary btn-xs" onclick="jhClick(' + row.userId + ')">激活</button> ';
                         return edit;
                     }
                 }]
         });
     }
+}
+
+function excelUploadFilesForAccount() {
+    window.location.href = "/export/bscList?status=1";
+}
+
+function excelUploadFilesForAddress() {
+    window.location.href = "/export/recieverAdressList";
 }
 
 function queryIncomeTrade() {
@@ -75,16 +80,6 @@ function jhClick(userId) {
     if(userId != null && userId != '' && userId != undefined){
 
     }
-}
-
-function processPageDiv(row){
-      var html =  '<div class="panel panel-info">' +
-          '<div class="panel-body" style="text-align: center;">' +
-          '<div class="row">' +
-          '<div class="col-sm-12 col-md-12" id="image">' +
-          '<img class="updateimg img-responsive" src="'+row+'" style="width: inherit;height: 210px;"/>' +
-          '</div></div></div></div>';
-      return html;
 }
 
 
