@@ -34,12 +34,12 @@
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">
+                        <form class="form-horizontal">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-
-                                        <label class="col-sm-2 control-label">密码</label>
+                                        <label class="col-sm-2 control-label">密码:</label>
                                         <div class="col-sm-6">
                                             <input type="password" class="form-control"  name="password" id="newPassword" placeholder="新密码">
                                         </div>
@@ -49,7 +49,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">确认密码</label>
+                                        <label class="col-sm-2 control-label">确认密码:</label>
                                         <div class="col-sm-6">
                                             <input type="password" class="form-control" id="newPassword2"
                                                    placeholder="确认新密码">
@@ -68,9 +68,11 @@
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                     <div id="tab-2" class="tab-pane">
                         <div class="panel-body">
+                            <form class="form-horizontal">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -96,25 +98,33 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">R交易所充值二维码:</label>
                                         <div class="col-md-6">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="uploadImageDiv">
-                                                <div class="fileinput-new thumbnail" style="min-width: 120px; min-height: 100px;">
-                                                    <img src="" alt="" />
-                                                </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-                                                <div>
-                                               <span class="btn default btn-file">
-                                                   <span class="btn btn-white">选择图片</span>
-                                                   <span class="fileinput-exists">更改</span>
-                                                       <input type="file" name="uploadImage" id="uploadImage" />
-                                                   </span>
-                                                    <a href="#" class="btn default fileinput-exists" data-dismiss="fileinput">移除</a>
-                                                    <span>请选择1M以内图片</span>
+                                            <div class="form-group" id="uploadForm" enctype='multipart/form-data'>
+                                                <div class="fileinput fileinput-new" data-provides="fileinput"
+                                                     id="exampleInputUpload">
+                                                    <div class="fileinput-new thumbnail"
+                                                         style="min-width: 120px; min-height: 100px;">
+                                                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;"
+                                                             src="" alt=""/>
+                                                    </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail"
+                                                         style="max-width: 200px; max-height: 150px;"></div>
+                                                    <div>
+                                                    <span class="btn btn-primary btn-file">
+                                                        <span class="fileinput-new">选择文件</span>
+                                                        <span class="fileinput-exists">换一张</span>
+                                                        <input type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                                    </span>
+                                                        <a href="javascript:;" class="btn btn-warning fileinput-exists"
+                                                           data-dismiss="fileinput">移除</a>
+                                                    </div>
+                                                    <button type="button" id="uploadSubmit" class="btn btn-info">提交</button>
                                                 </div>
                                             </div>
                                             <div id="titleImageError" style="color: #a94442"></div>
                                             <input type="hidden" id="imgAddress" name="attachUrl" value="" />
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -129,10 +139,13 @@
                                     </div>
                                 </div>
                             </div>
+                            </form>
                         </div>
+
                     </div>
                     <div id="tab-3" class="tab-pane">
                         <div class="panel-body">
+                            <form class="form-horizontal">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -180,6 +193,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

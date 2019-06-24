@@ -44,7 +44,7 @@ var USERLIST = {
                     field : 'recommUserName',
                     align : 'center',
                     formatter:function (value,row,index) {
-                        return '<div style="max-height:150px;max-width: 200px"><img src="'+row.imgAddress+'" /></div>';
+                        return processPageDiv(row);
                     }
                 },
                 {
@@ -58,6 +58,18 @@ var USERLIST = {
         });
     }
 }
+
+function processPageDiv(row){
+      var html =  '<div class="panel panel-info">' +
+                    '<div class="panel-heading"><i class="fa fa-times"></i></div>' +
+          '<div class="panel-body" style="text-align: center;">' +
+          '<div class="row">' +
+          '<div class="col-sm-12 col-md-12" id="image">' +
+          '<img class="updateimg img-responsive" src="'+row.imgAddress+'" style="width: inherit;height: 210px;"/>' +
+          '</div></div></div></div>';
+      return html;
+}
+
 
 $(document).ready(function() {
     USERLIST.initTable();
