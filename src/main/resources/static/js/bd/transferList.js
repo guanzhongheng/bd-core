@@ -48,6 +48,7 @@ var TRANSFERLIST = {
                     title : "用户二维码",
                     field : 'attachUrl',
                     align : 'center',
+                    width : '300px',
                     formatter:function (value,row,index) {
                         return processPageDiv(row);
                     }
@@ -90,11 +91,11 @@ function updateUser(id,amount,userId) {
 
 function processPageDiv(row){
     debugger;
-    var html =  '<div class="panel panel-info">' +
+    var html =  '<div class="panel panel-info"  style="max-width: 250px">' +
         '<div class="panel-body" style="text-align: center;">' +
         '<div class="row">' +
-        '<div class="col-sm-6 col-md-6" id="image" style="max-width: 230px">' +
-        '<img class="updateimg img-responsive" src="'+row.attachUrl+'" style="width: 210px;height: 210px;"/>' +
+        '<div class="col-sm-12 col-md-12" id="image">' +
+        '<img class="updateimg img-responsive" src="'+row.attachUrl+'" style="width: inherit;height: 210px;"/>' +
         '</div></div></div></div>';
     return html;
 }

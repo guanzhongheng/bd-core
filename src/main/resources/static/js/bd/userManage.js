@@ -43,6 +43,7 @@ function saveUser() {
             debugger;
             if (data.success) {
                 toastr.success("保存成功");
+                $("#rfinxInfo").empty();
             } else {
                 toastr.error("保存失败");
             }
