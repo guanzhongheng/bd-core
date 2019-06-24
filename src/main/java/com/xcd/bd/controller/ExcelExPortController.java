@@ -34,8 +34,8 @@ public class ExcelExPortController {
     private IExtendService extendService;
 
     @RequestMapping(value = "/export/bscList", method = RequestMethod.GET)
-    public ModelAndView bscRewardExport(HttpServletResponse response, @RequestParam("status") String status) {
-        List<RewardDetailVo> bscList = extendService.selectGtZeroRewadsByUserStatus(status.charAt(0));
+    public ModelAndView bscRewardExport(HttpServletResponse response, @RequestParam("status") Character status) {
+        List<RewardDetailVo> bscList = extendService.selectGtZeroRewadsByUserStatus(status);
         Context context = new Context();
         context.putVar("bscList", bscList);
         return new ModelAndView(
