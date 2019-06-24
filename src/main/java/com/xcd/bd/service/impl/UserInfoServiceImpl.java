@@ -52,6 +52,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
         tUserInfo.setPassword(Md5Util.encryptionPassWord(vo.getUserName(), vo.getPassword()));
         tUserInfo.setShipStatus('0');
         tUserInfo.setStatus('0');
+        tUserInfo.setUserType('1');
         tUserInfo.setCreateTime(current);
         int res = tUserInfoMapper.insert(tUserInfo);
         if (res > 0) {
@@ -99,8 +100,12 @@ public class UserInfoServiceImpl implements IUserInfoService {
         Date current = new Date();
         TUserInfo us = new TUserInfo();
         us.setUserId(vo.getUserId());
+        us.setRealName(vo.getRealName());
+        us.setPhone(vo.getPhone());
         us.setPassword(vo.getPassword());
-        us.setAddress(vo.getAddress());
+        us.setRecieverName(vo.getRecieverName());
+        us.setRecieverAddress(vo.getRecieverAddress());
+        us.setRecieverPhone(vo.getRecieverPhone());
         us.setAttachUrl(vo.getAttachUrl());
         if(vo.getAttachUrl()!=null){
             us.setStatus('1');

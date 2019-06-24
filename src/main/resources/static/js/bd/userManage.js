@@ -8,14 +8,14 @@ function savePassword() {
 
     $.ajax({
         type: "POST",
-        url: '/check',
+        url: '/user/updatePassword',
         data: {
-            newPassword: newPassword
+            password: newPassword
         },
         dataType: 'json',
         cache: false,
         success: function (data) {
-            if ("success" == data.result) {
+            if (data.success) {
                 toastr.success("保存成功");
             } else {
                 toastr.error("保存失败");
@@ -31,16 +31,17 @@ function saveUser() {
 
     $.ajax({
         type: "POST",
-        url: '/check',
+        url: '/user/update',
         data: {
             realName: realName,
             phone: phone,
-            imgAddress: imgAddress
+            attachUrl: imgAddress
         },
         dataType: 'json',
         cache: false,
         success: function (data) {
-            if ("success" == data.result) {
+            debugger;
+            if (data.success) {
                 toastr.success("保存成功");
             } else {
                 toastr.error("保存失败");
@@ -50,22 +51,23 @@ function saveUser() {
 };
 
 function saveAddress() {
-    var realName = $("#realName").val();
-    var phone = $("#phone").val();
-    var imgAddress = $("#imgAddress").val();
+    var receiverName = $("#receiverName").val();
+    var receiverPhone = $("#receiverPhone").val();
+    var recieverAddress = $("#receiverAddress").val();
 
     $.ajax({
         type: "POST",
-        url: '/check',
+        url: '/user/updateRecieverInfo',
         data: {
-            realName: realName,
-            phone: phone,
-            imgAddress: imgAddress
+            recieverName: receiverName,
+            recieverPhone: receiverPhone,
+            recieverAddress: recieverAddress
         },
         dataType: 'json',
         cache: false,
         success: function (data) {
-            if ("success" == data.result) {
+            debugger;
+            if (data.success()) {
                 toastr.success("保存成功");
             } else {
                 toastr.error("保存失败");

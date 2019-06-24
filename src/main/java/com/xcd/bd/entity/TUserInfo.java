@@ -12,12 +12,12 @@ public class TUserInfo implements Serializable {
     private Long userId;
     private String userName;
     private String password;
-    private String address;
     private String realName;
     //联系人电话
     private String phone;
+    private String recieverAddress;
     //收货人姓名
-    private String recieveName;
+    private String recieverName;
     //收货人联系电话
     private String recieverPhone;
     private String invCode;
@@ -72,14 +72,6 @@ public class TUserInfo implements Serializable {
         return password;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
     public void setInvCode(String invCode) {
         this.invCode = invCode;
     }
@@ -104,14 +96,6 @@ public class TUserInfo implements Serializable {
         this.phone = phone;
     }
 
-    public String getRecieveName() {
-        return recieveName;
-    }
-
-    public void setRecieveName(String recieveName) {
-        this.recieveName = recieveName;
-    }
-
     public Character getShipStatus() {
         return shipStatus;
     }
@@ -126,6 +110,22 @@ public class TUserInfo implements Serializable {
 
     public void setRecieverPhone(String recieverPhone) {
         this.recieverPhone = recieverPhone;
+    }
+
+    public String getRecieverAddress() {
+        return recieverAddress;
+    }
+
+    public void setRecieverAddress(String recieverAddress) {
+        this.recieverAddress = recieverAddress;
+    }
+
+    public String getRecieverName() {
+        return recieverName;
+    }
+
+    public void setRecieverName(String recieverName) {
+        this.recieverName = recieverName;
     }
 
     public Character getStatus() {

@@ -41,7 +41,7 @@
 
                                         <label class="col-sm-2 control-label">密码</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="newPassword" placeholder="新密码">
+                                            <input type="password" class="form-control"  name="password" id="newPassword" placeholder="新密码">
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">确认密码</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="newPassword2"
+                                            <input type="password" class="form-control" id="newPassword2"
                                                    placeholder="确认新密码">
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">R交易所认证姓名:</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="realName" placeholder="姓名">
+                                            <input type="text" class="form-control" name="realName" id="realName" placeholder="姓名">
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">R交易所认证手机:</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="phone" placeholder="联系方式">
+                                            <input type="text" class="form-control" name="phone" id="phone" placeholder="联系方式">
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                                                 </div>
                                             </div>
                                             <div id="titleImageError" style="color: #a94442"></div>
-                                            <input type="hidden" id="imgAddress" name="imgAddress" value="" />
+                                            <input type="hidden" id="imgAddress" name="attachUrl" value="" />
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@
 
                                         <label class="col-sm-4 control-label">收货人:</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="receiverName" placeholder="姓名">
+                                            <input type="text" class="form-control" name="recieverName" id="receiverName" placeholder="姓名">
                                         </div>
 
                                     </div>
@@ -149,9 +149,9 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
 
-                                        <label class="col-sm-4 control-label">收获联系方式:</label>
+                                        <label class="col-sm-4 control-label">收货联系方式:</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="receiverPhone"
+                                            <input type="text" class="form-control" name="recieverPhone" id="receiverPhone"
                                                    placeholder="联系方式">
                                         </div>
 
@@ -162,10 +162,10 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
 
-                                        <label class="col-sm-4 control-label">收获人地址:</label>
+                                        <label class="col-sm-4 control-label">收货人地址:</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="receiverAddress"
-                                                   placeholder="联系方式">
+                                            <input type="text" class="form-control" name="receiverAddress" id="receiverAddress"
+                                                   placeholder="收货地址">
                                         </div>
                                     </div>
                                 </div>
@@ -196,6 +196,12 @@
 <script th:src="@{/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
 <script th:src="@{/js/bootstrap-fileinput.js}"></script>
 <script th:src="@{/js/bd/userManage.js}"></script>
+<script th:src="@{/js/plugins/toastr/toastr.min.js}"/>
+<script>
+    toastr.options = {
+        "positionClass": "toast-bottom-full-width"
+    };
+</script>
 
 </body>
 

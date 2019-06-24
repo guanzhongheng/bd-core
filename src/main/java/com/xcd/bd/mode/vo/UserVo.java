@@ -12,19 +12,23 @@ package com.xcd.bd.mode.vo;
  */
 public class UserVo {
     private Long userId;
+    //真实姓名
+    private String realName;
     //电子邮箱
     private String userName;
     //登录密码
     private String password;
+    //联系方式
+    private String phone;
     //密码确认
     private String confirmPassword;
     //邀请码
     private String invCode;
-    private String address;
+    private String recieverAddress;
     //联系人电话
-    private String phone;
+    private String recieverPhone;
     //收货人姓名
-    private String recieveName;
+    private String recieverName;
     //充值地址
     private String attachUrl;
 
@@ -34,6 +38,22 @@ public class UserVo {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getUserName() {
@@ -60,6 +80,30 @@ public class UserVo {
         this.confirmPassword = confirmPassword;
     }
 
+    public String getRecieverAddress() {
+        return recieverAddress;
+    }
+
+    public void setRecieverAddress(String recieverAddress) {
+        this.recieverAddress = recieverAddress;
+    }
+
+    public String getRecieverPhone() {
+        return recieverPhone;
+    }
+
+    public void setRecieverPhone(String recieverPhone) {
+        this.recieverPhone = recieverPhone;
+    }
+
+    public String getRecieverName() {
+        return recieverName;
+    }
+
+    public void setRecieverName(String recieverName) {
+        this.recieverName = recieverName;
+    }
+
     public String getInvCode() {
         return invCode;
     }
@@ -68,29 +112,6 @@ public class UserVo {
         this.invCode = invCode;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getRecieveName() {
-        return recieveName;
-    }
-
-    public void setRecieveName(String recieveName) {
-        this.recieveName = recieveName;
-    }
 
     public String getAttachUrl() {
         return attachUrl;

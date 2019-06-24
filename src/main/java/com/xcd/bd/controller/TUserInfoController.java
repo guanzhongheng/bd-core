@@ -6,6 +6,7 @@ import com.xcd.bd.mode.vo.RecommRelVo;
 import com.xcd.bd.mode.vo.UserVo;
 import com.xcd.bd.service.IExtendService;
 import com.xcd.bd.service.IUserInfoService;
+import com.xcd.bd.utils.Md5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -31,30 +32,29 @@ public class TUserInfoController {
     private IExtendService service;
 
     @RequestMapping("/user/userInfo")
-    public ModelAndView userInfo(){
+    public ModelAndView userInfo() {
         ModelAndView mode = new ModelAndView("views/userManage");
         Subject subject = SecurityUtils.getSubject();
         TUserInfo userBo = (TUserInfo) subject.getPrincipal();
         TUserInfo userInfo = userInfoService.findByUserName(userBo.getUserName());
-        mode.addObject("user",userInfo);
+        mode.addObject("user", userInfo);
         return mode;
     }
 
     @RequestMapping("/user/rewardInfo")
-    public ModelAndView rewardInfo(){
+    public ModelAndView rewardInfo() {
         return new ModelAndView("views/rewardList");
     }
 
     @RequestMapping("/user/userList")
-    public ModelAndView userList(){
+    public ModelAndView userList() {
         return new ModelAndView("views/userList");
     }
 
     @RequestMapping("/user/transferList")
-    public ModelAndView transferList(){
+    public ModelAndView transferList() {
         return new ModelAndView("views/transferList");
     }
-
 
 
     @RequestMapping("/user/register")
@@ -89,18 +89,70 @@ public class TUserInfoController {
     }
 
 
-    @RequestMapping("/update")
-    public String doUpdate(@RequestBody UserVo userVo){
+    @RequestMapping("/user/updatePassword")
+    @ResponseBody
+    public AjaxResult doUpdatePassword(String password) {
+        AjaxResult result = new AjaxResult();
+        result.setSuccess(false);
+        UserVo userVo = new UserVo();
+        Subject subject = SecurityUtils.getSubject();
+        TUserInfo userBo = (TUserInfo) subject.getPrincipal();
+        userVo.setPassword(Md5Util.encryptionPassWord(userBo.getUserName(), password));
+        userVo.setUserId(userBo.getUserId());
         int res = userInfoService.update(userVo);
-        if(res>0){
-            return "index";
+        if (res > 0) {
+            result.setSuccess(true);
+        } else {
+            result.setMsg("系统异常，修改密码失败！");
         }
-        return "index";
+        return result;
+    }
+
+    @RequestMapping("/user/update")
+    @ResponseBody
+    public AjaxResult doUpdate(String realName,String attachUrl,String phone) {
+        AjaxResult result = new AjaxResult();
+        result.setSuccess(false);
+        Subject subject = SecurityUtils.getSubject();
+        TUserInfo userBo = (TUserInfo) subject.getPrincipal();
+        UserVo userVo = new UserVo();
+        userVo.setUserId(userBo.getUserId());
+        userVo.setRealName(realName);
+        userVo.setAttachUrl(attachUrl);
+        userVo.setPhone(phone);
+        int res = userInfoService.update(userVo);
+        if (res > 0) {
+            result.setSuccess(true);
+        } else {
+            result.setMsg("系统异常，修改用户失败！");
+        }
+        return result;
+    }
+
+    @RequestMapping("/user/updateRecieverInfo")
+    @ResponseBody
+    public AjaxResult doUpdateReciever(String recieverName,String recieverPhone,String recieverAddress) {
+        AjaxResult result = new AjaxResult();
+        result.setSuccess(false);
+        Subject subject = SecurityUtils.getSubject();
+        TUserInfo userBo = (TUserInfo) subject.getPrincipal();
+        UserVo userVo = new UserVo();
+        userVo.setUserId(userBo.getUserId());
+        userVo.setRecieverName(recieverName);
+        userVo.setRecieverPhone(recieverPhone);
+        userVo.setRecieverAddress(recieverAddress);
+        int res = userInfoService.update(userVo);
+        if (res > 0) {
+            result.setSuccess(true);
+        } else {
+            result.setMsg("系统异常，修改密码失败！");
+        }
+        return result;
     }
 
     @RequestMapping("/user/searchRecomInfo")
     @ResponseBody
-    public List<RecommRelVo> findRecommInfoByUserId(){
+    public List<RecommRelVo> findRecommInfoByUserId() {
         Subject subject = SecurityUtils.getSubject();
         TUserInfo userBo = (TUserInfo) subject.getPrincipal();
         return service.findRecommInfoByUserId(userBo.getUserId());

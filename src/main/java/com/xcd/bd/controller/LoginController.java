@@ -38,7 +38,6 @@ public class LoginController {
     public String index(Model model){
         Subject subject = SecurityUtils.getSubject();
         TUserInfo userBo = (TUserInfo) subject.getPrincipal();
-        userBo.setUserType('0');
         model.addAttribute("user",userBo);
         return "main";
     }
