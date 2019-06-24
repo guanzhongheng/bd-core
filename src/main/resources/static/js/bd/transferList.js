@@ -57,7 +57,7 @@ var TRANSFERLIST = {
                     field : 'operator',
                     align : 'center',
                     formatter:function (value,row,index) {
-                        var edit = '<button style="width: 55px;height: 35px" type="button" class="btn btn-primary btn-xs" onclick="updateUser(' + row.id + ',' + row.amount + ',' + row.userId + ')">激活</button> ';
+                        var edit = '<button style="width: 55px;height: 35px" type="button" class="btn btn-primary btn-xs" onclick="updateUser(' + row.id + ',' + row.amount + ',' + row.userId + ')">确认</button> ';
                         return edit;
                     }
                 }]

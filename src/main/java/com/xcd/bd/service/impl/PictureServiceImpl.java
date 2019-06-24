@@ -14,7 +14,7 @@ import java.util.Map;
 @Service
 public class PictureServiceImpl implements IPictureService {
 
-    @Value("image.upload.path")
+    @Value("${image.upload.path}")
     private String filePath;
 //    private String filePath = "/Users/lijinku/Documents/picture/";
 
