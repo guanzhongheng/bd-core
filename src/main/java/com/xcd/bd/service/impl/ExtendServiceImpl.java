@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,15 +64,18 @@ public class ExtendServiceImpl implements IExtendService {
         return usLst;
     }
 
+
     @Override
     public List<RewardDetailVo> selectListByUserStatus(String status) {
-
-        if(StringUtils.isEmpty(status)){
+        if (StringUtils.isEmpty(status)) {
             return extendMapper.selectGtZeroRewadsByStatus(null);
-        }else{
+        } else {
             return extendMapper.selectGtZeroRewadsByStatus(status.toCharArray()[0]);
         }
     }
+
+
+    @Override
     public List<RewardVo> findUndealRewards() {
         return extendMapper.findUndealRewardsByStatus('0');
     }

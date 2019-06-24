@@ -18,6 +18,8 @@ public class RewardVo {
     private String attachUrl;
     //用户名
     private String userName;
+    //用户Id
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -49,5 +51,13 @@ public class RewardVo {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
