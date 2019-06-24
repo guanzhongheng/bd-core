@@ -18,6 +18,7 @@ public class TExportRecord implements Serializable {
     private Long id;
     private Long userId;
     private Double amount;
+    private Character status;
     private Date createTime;
 
     public Long getId() {
@@ -42,6 +43,14 @@ public class TExportRecord implements Serializable {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public Character getStatus() {
+        return status;
+    }
+
+    public void setStatus(Character status) {
+        this.status = status;
     }
 
     public Date getCreateTime() {

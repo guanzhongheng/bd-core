@@ -7,17 +7,27 @@
         id,
         user_id,
         amount,
+        status,
         create_time
         )
         VALUES
-        <foreach collection ="list" item="item" separator =",">
+        <foreach collection="list" item="item" separator=",">
             (
             #{item.id,jdbcType=BIGINT},
             #{item.userId,jdbcType=BIGINT},
             #{item.amount,jdbcType=DOUBLE},
+            #{item.status,jdbcType=CHAR},
             #{item.createTime,jdbcType=TIMESTAMP}
             )
         </foreach>
     </insert>
+
+    <update id="updateStatusById" parameterType="com.xcd.bd.entity.TExportRecord">
+        update T_EXPORT_RECORD
+        set
+          status = #{status,jdbcType=CHAR},
+          update_time=#{updateTime,jdbcType=TIMESTAMP}
+         where id = #{id,jdbcType=BIGINT}
+    </update>
 
 </mapper>

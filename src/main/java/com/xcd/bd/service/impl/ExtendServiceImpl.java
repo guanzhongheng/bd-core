@@ -9,6 +9,7 @@ import com.xcd.bd.entity.TExportRecord;
 import com.xcd.bd.entity.TUserInfo;
 import com.xcd.bd.mode.vo.RecommRelVo;
 import com.xcd.bd.mode.vo.RewardDetailVo;
+import com.xcd.bd.mode.vo.RewardVo;
 import com.xcd.bd.service.IExtendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,29 +44,9 @@ public class ExtendServiceImpl implements IExtendService {
     @Autowired
     private TExportRecordMapper exportRecordMapper;
 
-    @Transactional(isolation = Isolation.READ_COMMITTED,rollbackFor = Exception.class)
     @Override
     public List<RewardDetailVo> selectGtZeroRewadsByUserStatus(char status) {
-        List<RewardDetailVo> rewardDetailVos = extendMapper.selectGtZeroRewadsByStatus(status);
-        if(rewardDetailVos!=null && !rewardDetailVos.isEmpty()){
-            Date current = new Date();
-            List<TExportRecord> exRecords = new ArrayList<>(rewardDetailVos.size());
-            List<TAcctInfo> acctList = rewardDetailVos.stream().map(rd -> {
-                TExportRecord record = new TExportRecord();
-                record.setUserId(rd.getUserId());
-                record.setAmount(rd.getAvalAmount());
-                record.setCreateTime(current);
-                exRecords.add(record);
-                TAcctInfo acctInfo = new TAcctInfo();
-                acctInfo.setUpdateTime(current);
-                acctInfo.setAvalAmount(-rd.getAvalAmount());
-                acctInfo.setUserId(rd.getUserId());
-                return acctInfo;
-            }).collect(Collectors.toList());
-            acctInfoMapper.updateBatch(acctList);
-            exportRecordMapper.insertBatch(exRecords);
-        }
-        return rewardDetailVos;
+        return extendMapper.selectGtZeroRewadsByStatus(status);
     }
 
     @Override
@@ -76,10 +57,10 @@ public class ExtendServiceImpl implements IExtendService {
     @Override
     public List<TUserInfo> findUnshipUserInf() {
         List<TUserInfo> usLst = userInfoMapper.findUserInfoByShipStatus('0');
-        if(usLst!=null && !usLst.isEmpty()){
+        if (usLst != null && !usLst.isEmpty()) {
             Date current = new Date();
             List<Long> usIdList = usLst.stream().map(us -> us.getUserId()).collect(Collectors.toList());
-            userInfoMapper.updateShipStatusBatchByPrimaryKey(usIdList,'1',current);
+            userInfoMapper.updateShipStatusBatchByPrimaryKey(usIdList, '1', current);
         }
         return usLst;
     }
@@ -92,4 +73,29 @@ public class ExtendServiceImpl implements IExtendService {
             return extendMapper.selectGtZeroRewadsByStatus(status.toCharArray()[0]);
         }
     }
+    public List<RewardVo> findUndealRewards() {
+        return extendMapper.findUndealRewardsByStatus('0');
+    }
+
+    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+    @Override
+    public int dealTransaction(Long id, Double amount, Long userId) {
+        Date current = new Date();
+        TExportRecord record = new TExportRecord();
+        record.setId(id);
+        record.setStatus('1');
+        record.setCreateTime(current);
+        int res = exportRecordMapper.updateStatusById(record);
+        if (res > 0) {
+            //扣除余额
+            TAcctInfo acctInfo = new TAcctInfo();
+            acctInfo.setUpdateTime(current);
+            acctInfo.setAvalAmount(-amount);
+            acctInfo.setUserId(userId);
+            res = acctInfoMapper.update(acctInfo);
+        }
+        return res;
+    }
+
+
 }

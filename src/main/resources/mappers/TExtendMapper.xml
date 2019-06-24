@@ -16,4 +16,17 @@
     <select id="findRecommInfoByUserId" parameterType="java.lang.Long" resultType="com.xcd.bd.mode.vo.RecommRelVo">
         select u.user_name recommUserName, rr.create_time createTime from T_RECOMM_REL_INFO rr LEFT JOIN T_USER_INFO u on rr.recomm_user_id=u.user_id where rr.user_id=#{userId,jdbcType=BIGINT}
     </select>
+    <select id="findUndealRewardsByStatus" parameterType="java.lang.Character" resultMap="com.xcd.bd.mode.vo.RewardVo">
+        SELECT
+            er.id,
+            er.amount,
+            ui.user_name userName,
+            ui.attach_url attachUrl
+        FROM
+            T_EXPORT_RECORD er
+            JOIN T_USER_INFO ui ON er.user_id = ui.user_id
+        WHERE
+            er.STATUS = #{status,jdbcType=CHAR}
+    </select>
+
 </mapper>

@@ -3,6 +3,7 @@ package com.xcd.bd.service;
 import com.xcd.bd.entity.TUserInfo;
 import com.xcd.bd.mode.vo.RecommRelVo;
 import com.xcd.bd.mode.vo.RewardDetailVo;
+import com.xcd.bd.mode.vo.RewardVo;
 
 import java.util.List;
 
@@ -40,4 +41,26 @@ public interface IExtendService {
 
 
     List<RewardDetailVo> selectListByUserStatus(String status);
+    /**
+     * @Description: 获取未处理的奖金信息
+     * @Param: []
+     * @return: java.util.List<com.xcd.bd.mode.vo.RewardVo>
+     * @Author: lijinku
+     * @Iteration : 1.0
+     * @Date: 2019/6/24 3:46 PM
+     */
+    List<RewardVo> findUndealRewards();
+
+    /**
+     * @Description: 处理交易
+     * @Param: [id]
+     * @return: int
+     * @Author: lijinku
+     * @Iteration : 1.0
+     * @Date: 2019/6/24 4:01 PM
+     */
+    int dealTransaction(Long id,Double amount,Long userId);
+
+
+
 }
