@@ -93,8 +93,8 @@ function processPageDiv(row){
     var html =  '<div class="panel panel-info">' +
         '<div class="panel-body" style="text-align: center;">' +
         '<div class="row">' +
-        '<div class="col-sm-12 col-md-12" id="image">' +
-        '<img class="updateimg img-responsive" src="'+row.attachUrl+'" style="width: 210;height: 210px;"/>' +
+        '<div class="col-sm-6 col-md-6" id="image" style="max-width: 230px">' +
+        '<img class="updateimg img-responsive" src="'+row.attachUrl+'" style="width: 210px;height: 210px;"/>' +
         '</div></div></div></div>';
     return html;
 }

@@ -1,13 +1,19 @@
 package com.xcd.bd.service.impl;
 
+import com.xcd.bd.dao.TUserInfoMapper;
+import com.xcd.bd.entity.TUserInfo;
 import com.xcd.bd.service.IPictureService;
 import com.xcd.bd.utils.FileUtil;
 import com.xcd.bd.utils.IDUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +23,8 @@ public class PictureServiceImpl implements IPictureService {
     @Value("${image.upload.path}")
     private String filePath;
 //    private String filePath = "/Users/lijinku/Documents/picture/";
+    @Autowired
+    public TUserInfoMapper userInfoMapper;
 
     @Override
     public Map<String, Object> uploadPicture(MultipartFile uploadFile) throws Exception {
@@ -42,6 +50,13 @@ public class PictureServiceImpl implements IPictureService {
 
                 //将内存中的文件写入磁盘
                 uploadFile.transferTo(file);
+                Subject subject = SecurityUtils.getSubject();
+                TUserInfo userBo = (TUserInfo) subject.getPrincipal();
+                TUserInfo tUserInfo = new TUserInfo();
+                tUserInfo.setUpdateTime(new Date());
+                tUserInfo.setAttachUrl("/picture/" + newName);
+                tUserInfo.setUserId(userBo.getUserId());
+                userInfoMapper.update(tUserInfo);
 
                 //图片上传成功后，将图片的地址写回
                 resultMap.put("error", 0);
