@@ -3,14 +3,22 @@
 <mapper namespace="com.xcd.bd.dao.TExtendMapper">
     <select id="selectGtZeroRewadsByStatus" parameterType="java.lang.Character"
             resultType="com.xcd.bd.mode.vo.RewardDetailVo">
-        select ui.user_id userId, ui.user_name userName, ui.real_name realName,ui.phone,ac.aval_amount
-        avalAmount,ac.aval_amount*ac.rate cnstAmount
-        from T_ACCT_INFO ac LEFT JOIN T_USER_INFO ui on ac.user_id=ui.user_id
-        where
+        SELECT
+        ui.user_id userId,
+        ui.user_name userName,
+        ui.real_name realName,
+        ui.phone,
+        ac.aval_amount avalAmount,
+        ac.aval_amount * ac.rate cnstAmount
+        FROM
+        T_ACCT_INFO ac
+        LEFT JOIN T_USER_INFO ui ON ac.user_id = ui.user_id
+        WHERE
         <if test="status!=null">
-            ui.status=#{status,jdbcType=CHAR} and
+            ui.STATUS = #{status,jdbcType=CHAR} and
         </if>
-        ac.aval_amount>0
+        ac.aval_amount >0
+        and ui.user_type='1'
     </select>
 
     <select id="findRecommInfoByUserId" parameterType="java.lang.Long" resultType="com.xcd.bd.mode.vo.RecommRelVo">
