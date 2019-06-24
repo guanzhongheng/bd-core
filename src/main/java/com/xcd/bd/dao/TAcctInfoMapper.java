@@ -1,6 +1,7 @@
 package com.xcd.bd.dao;
 
 import com.xcd.bd.entity.TAcctInfo;
+import com.xcd.bd.mode.vo.AccountVo;
 
 import java.util.List;
 
@@ -25,4 +26,6 @@ public interface TAcctInfoMapper {
     int delete(TAcctInfo tAcctInfo);
 
     int updateBatch(List<TAcctInfo> acctList);
+
+    AccountVo findByUserId(Long userId);
 }

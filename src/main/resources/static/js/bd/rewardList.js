@@ -43,7 +43,7 @@ var REWARD = {
                     title : "用户创建时间",
                     field : 'createTime',
                     align : 'center'
-                }]
+                }],
         });
     }
 }

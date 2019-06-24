@@ -39,6 +39,15 @@ public class UserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
+    public List<TUserInfo> findListByStatus(String status) {
+        if (StringUtils.isEmpty(status)) {
+            return tUserInfoMapper.findListByStatus(null);
+        } else {
+            return tUserInfoMapper.findListByStatus(status.charAt(0));
+        }
+    }
+
+    @Override
     public List<TUserInfo> findAllList() {
         return tUserInfoMapper.findAllList();
     }
@@ -68,8 +77,8 @@ public class UserInfoServiceImpl implements IUserInfoService {
                 Long recommUserId = tUserInfoMapper.findUserIdByInvCode(vo.getInvCode());
                 if (recommUserId != null) {
                     TRecommRelInfo recommRel = new TRecommRelInfo();
-                    recommRel.setRecommUserId(recommUserId);
                     recommRel.setRecommUserId(tUserInfo.getUserId());
+                    recommRel.setUserId(recommUserId);
                     recommRel.setCreateTime(current);
                     res = tRecommRelInfoMapper.insert(recommRel);
                     //更新推荐奖励
@@ -107,7 +116,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
         us.setRecieverAddress(vo.getRecieverAddress());
         us.setRecieverPhone(vo.getRecieverPhone());
         us.setAttachUrl(vo.getAttachUrl());
-        if(vo.getAttachUrl()!=null){
+        if (vo.getAttachUrl() != null) {
             us.setStatus('1');
             us.setInvCode(InvCodeGenUtil.toSerialCode(vo.getUserId()));
         }

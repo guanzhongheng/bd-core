@@ -29,10 +29,15 @@
     </select>
 
 
-
     <select id="findAllList" resultMap="tAcctInfoResultMap">
         SELECT *
         FROM T_ACCT_INFO
+    </select>
+
+    <select id="findByUserId" parameterType="java.lang.Long" resultType="com.xcd.bd.mode.vo.AccountVo">
+        SELECT aval_amount avalAmount,aval_amount*rate avalCnstAmount,total_amount totalAmount
+        FROM T_ACCT_INFO
+        where user_id=#{userId,jdbcType=BIGINT}
     </select>
 
     <insert id="insert" parameterType="com.xcd.bd.entity.TAcctInfo">

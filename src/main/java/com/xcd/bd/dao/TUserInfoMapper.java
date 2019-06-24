@@ -17,6 +17,8 @@ public interface TUserInfoMapper {
 
     List<TUserInfo> findList(TUserInfo tUserInfo);
 
+    List<TUserInfo> findListByStatus(Character status);
+
     List<TUserInfo> findAllList();
 
     int insert(TUserInfo tUserInfo);

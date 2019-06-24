@@ -34,6 +34,16 @@
         </where>
     </select>
 
+    <select id="findListByStatus" parameterType="java.lang.Character" resultMap="tUserInfoResultMap">
+        SELECT *
+        FROM T_USER_INFO
+        <where>
+            <if test="status!=null">
+                status = #{status,jdbcType=CHAR}
+            </if>
+        </where>
+    </select>
+
     <select id="findUserInfoByShipStatus" parameterType="java.lang.Character" resultMap="tUserInfoResultMap">
         SELECT *
         FROM T_USER_INFO

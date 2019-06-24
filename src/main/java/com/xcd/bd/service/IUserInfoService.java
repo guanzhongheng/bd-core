@@ -13,6 +13,8 @@ public interface IUserInfoService {
 
     List<TUserInfo> findList(TUserInfo tUserInfo);
 
+    List<TUserInfo> findListByStatus(String status);
+
     List<TUserInfo> findAllList();
 
     int insert(UserVo vo);
