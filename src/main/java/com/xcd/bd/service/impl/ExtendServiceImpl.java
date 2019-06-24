@@ -48,10 +48,12 @@ public class ExtendServiceImpl implements IExtendService {
         return extendMapper.selectGtZeroRewadsByStatus(status);
     }
 
+
     @Override
     public List<RecommRelVo> findRecommInfoByUserId(Long userId) {
         return extendMapper.findRecommInfoByUserId(userId);
     }
+
 
     @Override
     public List<TUserInfo> findUnshipUserInf() {
