@@ -133,12 +133,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
     @Override
     public TUserInfo findByUserName(String userName) {
-        try {
             return tUserInfoMapper.findByUserName(userName);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
     }
 
 }

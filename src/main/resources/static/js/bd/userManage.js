@@ -110,13 +110,14 @@ var USERMANAGE = {
 
     initNewImg : function () {
 
-        $("#uploadfile").fileinput({
+        $("#uploadFile").fileinput({
             language: 'zh', //设置语言
-            uploadUrl: "/apk_upload", //上传的地址
+            uploadUrl: "/pic/upload", //上传的地址
             uploadAsync: true, //默认异步上传
             showUpload: true, //是否显示上传按钮
             showRemove : true, //显示移除按钮
-            showPreview : true, //是否显示预览
+            allowedFileTypes:/(gif|jpe?g|png)$/i,
+            showPreview : false, //是否显示预览
             showCaption: false,//是否显示标题
             browseClass: "btn btn-primary", //按钮样式
             dropZoneEnabled: false,//是否显示拖拽区域
@@ -125,7 +126,7 @@ var USERMANAGE = {
             validateInitialCount:true
         }).on('filepreupload', function(event, data, previewId, index) {
             debugger;
-            toastr.success("上传成功！")
+            $("#picUrl").val();
         });
     }
 }
@@ -133,6 +134,6 @@ var USERMANAGE = {
 
 
 $(document).ready(function () {
-    USERMANAGE.initImg();
+   //  USERMANAGE.initImg();
     USERMANAGE.initNewImg();
 })

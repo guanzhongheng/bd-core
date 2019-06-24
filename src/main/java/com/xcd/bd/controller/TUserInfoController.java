@@ -11,6 +11,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -64,36 +65,24 @@ public class TUserInfoController {
         return table;
     }
 
-
     @RequestMapping("/user/register")
-    @ResponseBody
-    public AjaxResult doReregistry(UserVo userVo) {
-        AjaxResult result = new AjaxResult();
-        result.setSuccess(false);
+    public String doReregistry(UserVo userVo, Model model) {
         if (userVo == null || StringUtils.isEmpty(userVo.getUserName()) || StringUtils.isEmpty(userVo.getPassword())) {
-            result.setErrorCode("-1");
-            result.setMsg("用户名和密码不能为空！");
-            return result;
+            model.addAttribute("errMsg","用户名和密码不能为空！");
+            return "redirect:/register";
         }
-
         TUserInfo dbUser = userInfoService.findByUserName(userVo.getUserName());
         if (dbUser != null) {
-            result.setErrorCode("-2");
-            result.setMsg("用户名已存在！");
-            return result;
+            model.addAttribute("errMsg","用户名已存在！");
+            return "redirect:/register";
         }
-
-
         int res = userInfoService.insert(userVo);
         if (res < 1) {
-            result.setErrorCode("-3");
-            result.setMsg("系统异常！");
-            return result;
-        } else {
-            result.setSuccess(true);
+            model.addAttribute("errMsg","系统异常！");
+            return "redirect:/register";
+        }else{
+            return "redirect:login";
         }
-
-        return result;
     }
 
 

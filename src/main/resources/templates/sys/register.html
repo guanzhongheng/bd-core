@@ -49,14 +49,21 @@
                 <small>已经有账户了？</small>
                 <a href="/login">点此登录</a>
             </p>
-
+            <input type="hidden" id="errorMsg" th:value="${errMsg}"/>
         </form>
     </div>
 </div>
-<script th:href="@{/js/jquery.min.js}"></script>
-<script th:href="@{/js/bootstrap.min.js}"></script>
-<script th:href="@{/js/plugins/iCheck/icheck.min.js}"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.tips.js}"></script>
+<script th:src="@{/js/plugins/iCheck/icheck.min.js}"></script>
 <script>
+    $(document).ready(function () {
+        var errorMsg = $("#errorMsg").val()
+        if(errorMsg != null || errorMsg != '' || errorMsg != undefined){
+            alert(errorMsg);
+        }
+    })
 </script>
 </body>
 

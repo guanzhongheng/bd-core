@@ -110,45 +110,15 @@
 
                                                 <form enctype="multipart/form-data">
                                                     <div class="form-group">
-                                                        <input id="file-0d" class="file" type="file" data-theme="fas" data-upload-url="/pic/upload">
+                                                        <input id="uploadFile" class="file" type="file" data-theme="fas" data-upload-url="/pic/upload">
                                                     </div>
                                                 </form>
-
-                                                <div class="form-group" id="uploadForm" enctype='multipart/form-data'>
-                                                    <div class="fileinput fileinput-new" data-provides="fileinput"
-                                                         id="exampleInputUpload">
-                                                        <div class="fileinput-new thumbnail"
-                                                             style="min-width: 120px; min-height: 100px;">
-                                                            <img id='picImg'
-                                                                 style="width: 100%;height: auto;max-height: 140px;"
-                                                                 src="" alt=""/>
-                                                        </div>
-                                                        <div class="fileinput-preview fileinput-exists thumbnail"
-                                                             style="max-width: 200px; max-height: 150px;"></div>
-                                                        <div>
-                                                    <span class="btn btn-primary btn-file">
-                                                        <span class="fileinput-new">选择文件</span>
-                                                        <span class="fileinput-exists">换一张</span>
-                                                        <input type="file" name="pic1" id="picID"
-                                                               accept="image/gif,image/jpeg,image/x-png"/>
-                                                    </span>
-                                                            <a href="javascript:;"
-                                                               class="btn btn-warning fileinput-exists"
-                                                               data-dismiss="fileinput">移除</a>
-                                                        </div>
-                                                        <button type="button" id="uploadSubmit" class="btn btn-info">
-                                                            提交
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div id="titleImageError" style="color: #a94442"></div>
-                                                <input type="hidden" id="imgAddress" name="attachUrl" value=""/>
+                                                <input type="hidden" id="picUrl" name="attachUrl" value=""/>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-
 
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -240,7 +210,7 @@
 <script th:src="@{/js/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
 <script th:src="@{/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js}"></script>
 <script th:src="@{/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
-<script th:src="@{/js/bd/userManage.js?v=1}"></script>
+<script th:src="@{/js/bd/userManage.js}"></script>
 <script th:src="@{/js/plugins/toastr/toastr.min.js}"/>
 
 </div>

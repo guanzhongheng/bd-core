@@ -222,6 +222,7 @@
             '   </div>\n' +
             '</div>',
         tMain2 = '{preview}\n<div class="kv-upload-progress hide"></div>\n{remove}\n{cancel}\n{upload}\n{browse}\n',
+
         tPreview = '<div class="file-preview {class}">\n' +
             '    <div class="close fileinput-remove">&times;</div>\n' +
             '    <div class="{dropClass}">\n' +
