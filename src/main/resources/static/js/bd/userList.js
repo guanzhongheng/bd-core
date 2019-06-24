@@ -55,8 +55,12 @@ var USERLIST = {
                     field : 'createTime',
                     align : 'center',
                     formatter:function (value,row,index) {
-                        var edit = '<button style="width: 55px;height: 35px" type="button" class="btn btn-primary btn-xs" onclick="jhClick(' + row.userId + ')">激活</button> ';
-                        return edit;
+                        debugger;
+                        if(row.status=='0'){
+                            var edit = '<button style="width: 55px;height: 35px" type="button" class="btn btn-primary btn-xs" onclick="jhClick(' + row.userId + ')">激活</button> ';
+                            return edit;
+                        }
+
                     }
                 }]
         });
@@ -78,7 +82,23 @@ function queryIncomeTrade() {
 function jhClick(userId) {
     debugger;
     if(userId != null && userId != '' && userId != undefined){
-
+        $.ajax({
+            type: "POST",
+            url: '/user/updateStatus',
+            data: {
+                userId: userId
+            },
+            dataType: 'json',
+            cache: false,
+            success: function (data) {
+                if (data.success) {
+                    toastr.success("激活成功");
+                    $('#userListTable').bootstrapTable("refresh")
+                } else {
+                    toastr.error("保存失败");
+                }
+            }
+        });
     }
 }
 

@@ -62,7 +62,7 @@ public class TUserInfoController {
     @ResponseBody
     public BaseTable selectUserStatus(String status){
         BaseTable table = new BaseTable();
-        List<RewardDetailVo> list = service.selectListByUserStatus(status);
+        List<TUserInfo> list = userInfoService.findListByStatus(status);
         table.setRows(list);
         return table;
     }
@@ -178,6 +178,23 @@ public class TUserInfoController {
         AjaxResult result = new AjaxResult();
         result.setSuccess(false);
         int res = service.dealTransaction(id,amount,userId);
+        if (res > 0) {
+            result.setSuccess(true);
+        } else {
+            result.setMsg("系统异常，转账失败！");
+        }
+        return result;
+    }
+
+    @RequestMapping("/user/updateStatus")
+    @ResponseBody
+    public AjaxResult updateUserStatus(Long userId) {
+        AjaxResult result = new AjaxResult();
+        result.setSuccess(false);
+        UserVo userVo = new UserVo();
+        userVo.setUserId(userId);
+        userVo.setStatus('1');
+        int res = userInfoService.update(userVo);
         if (res > 0) {
             result.setSuccess(true);
         } else {

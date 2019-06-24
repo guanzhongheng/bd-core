@@ -17,7 +17,7 @@ public interface TUserInfoMapper {
 
     List<TUserInfo> findList(TUserInfo tUserInfo);
 
-    List<TUserInfo> findListByStatus(Character status);
+    List<TUserInfo> findListByStatus(@Param("status") Character status);
 
     List<TUserInfo> findAllList();
 

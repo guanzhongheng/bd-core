@@ -31,6 +31,7 @@ public class UserVo {
     private String recieverName;
     //充值地址
     private String attachUrl;
+    private Character status;
 
     public Long getUserId() {
         return userId;
@@ -119,5 +120,13 @@ public class UserVo {
 
     public void setAttachUrl(String attachUrl) {
         this.attachUrl = attachUrl;
+    }
+
+    public Character getStatus() {
+        return status;
+    }
+
+    public void setStatus(Character status) {
+        this.status = status;
     }
 }

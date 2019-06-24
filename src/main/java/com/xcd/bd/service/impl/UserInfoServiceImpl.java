@@ -116,11 +116,13 @@ public class UserInfoServiceImpl implements IUserInfoService {
         us.setRecieverAddress(vo.getRecieverAddress());
         us.setRecieverPhone(vo.getRecieverPhone());
         us.setAttachUrl(vo.getAttachUrl());
-        if (vo.getAttachUrl() != null) {
-            us.setStatus('1');
+
+        if (vo.getStatus() != null) {
+            //账户激活
+            us.setStatus(vo.getStatus());
             us.setInvCode(InvCodeGenUtil.toSerialCode(vo.getUserId()));
         }
-        us.setCreateTime(current);
+        us.setUpdateTime(current);
         return tUserInfoMapper.update(us);
     }
 
