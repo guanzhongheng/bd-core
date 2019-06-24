@@ -2,7 +2,7 @@ var USERLIST = {
 
     initTable : function () {
         $('#userListTable').bootstrapTable({
-            url : "/user/searchRecomInfo",
+            url : "/user/transferInfo",
             method : 'post',
             contentType : "application/x-www-form-urlencoded",
             singleSelect : false,
@@ -12,6 +12,12 @@ var USERLIST = {
             sortable : true, // 是否启用排序
             sortOrder : "asc", // 排序方式
             // queryParams: oTableInit.queryParams,//传递参数（*）,
+            queryParams:function queryParams(params) {   //设自定义查询参数
+                var param = {
+                    status: $("#status").val()//菜单标题
+                };
+                return param;
+            },
             sidePagination : "server", // 分页方式：client客户端分页，server服务端分页（*）
             pageNumber : 1, // 初始化加载第一页，默认第一页
             pageSize : 10, // 每页的记录行数（*）
@@ -36,7 +42,7 @@ var USERLIST = {
                 },
                 {
                     title : "R账号",
-                    field : 'recommUserName',
+                    field : 'userName',
                     align : 'center'
                 },
                 {
@@ -59,9 +65,14 @@ var USERLIST = {
     }
 }
 
+function queryIncomeTrade() {
+    $('#userListTable').bootstrapTable("refresh")
+}
+
+
 function processPageDiv(row){
+
       var html =  '<div class="panel panel-info">' +
-                    '<div class="panel-heading"><i class="fa fa-times"></i></div>' +
           '<div class="panel-body" style="text-align: center;">' +
           '<div class="row">' +
           '<div class="col-sm-12 col-md-12" id="image">' +

@@ -37,4 +37,7 @@ public interface IExtendService {
      * @Date: 2019/6/23 12:35 AM
      */
     List<TUserInfo> findUnshipUserInf();
+
+
+    List<RewardDetailVo> selectListByUserStatus(String status);
 }

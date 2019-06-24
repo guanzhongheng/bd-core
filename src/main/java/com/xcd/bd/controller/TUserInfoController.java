@@ -1,8 +1,10 @@
 package com.xcd.bd.controller;
 
+import com.xcd.bd.entity.BaseTable;
 import com.xcd.bd.entity.TUserInfo;
 import com.xcd.bd.mode.vo.AjaxResult;
 import com.xcd.bd.mode.vo.RecommRelVo;
+import com.xcd.bd.mode.vo.RewardDetailVo;
 import com.xcd.bd.mode.vo.UserVo;
 import com.xcd.bd.service.IExtendService;
 import com.xcd.bd.service.IUserInfoService;
@@ -53,6 +55,16 @@ public class TUserInfoController {
     @RequestMapping("/user/transferList")
     public ModelAndView transferList() {
         return new ModelAndView("views/transferList");
+    }
+
+
+    @RequestMapping("/user/transferInfo")
+    @ResponseBody
+    public BaseTable selectUserStatus(String status){
+        BaseTable table = new BaseTable();
+        List<RewardDetailVo> list = service.selectListByUserStatus(status);
+        table.setRows(list);
+        return table;
     }
 
 

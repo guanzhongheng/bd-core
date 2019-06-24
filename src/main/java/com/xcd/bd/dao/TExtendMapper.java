@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TExtendMapper {
 
-    List<RewardDetailVo> selectGtZeroRewadsByStatus(char status);
+    List<RewardDetailVo> selectGtZeroRewadsByStatus(Character status);
 
     List<RecommRelVo> findRecommInfoByUserId(Long userId);
 }
