@@ -27,4 +27,7 @@ public interface IUserInfoService {
 
     TUserInfo findByUserName(String userName);
 
+
+    int activeUser(UserVo vo);
+
 }

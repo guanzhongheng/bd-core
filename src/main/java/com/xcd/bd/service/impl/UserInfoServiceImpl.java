@@ -68,6 +68,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
             acct.setUserId(tUserInfo.getUserId());
             acct.setAvalAmount(Constants.BSC_AMOUNT);
             acct.setTotalAmount(Constants.BSC_AMOUNT);
+            acct.setUnAvalAmount(0d);
             acct.setRecommSum(0);
             acct.setRate(Constants.BSC_CNST_RATE);
             acct.setCreateTime(current);
@@ -78,14 +79,14 @@ public class UserInfoServiceImpl implements IUserInfoService {
                     TRecommRelInfo recommRel = new TRecommRelInfo();
                     recommRel.setRecommUserId(tUserInfo.getUserId());
                     recommRel.setUserId(recommUserId);
+                    recommRel.setAmount(Constants.BSC_REWARD_AMOUNT);
                     recommRel.setCreateTime(current);
                     res = tRecommRelInfoMapper.insert(recommRel);
                     //更新推荐奖励
                     TAcctInfo tAcctInfo = new TAcctInfo();
                     tAcctInfo.setUserId(recommUserId);
                     tAcctInfo.setRecommSum(1);
-                    tAcctInfo.setTotalAmount(Constants.BSC_REWARD_AMOUNT);
-                    tAcctInfo.setAvalAmount(Constants.BSC_REWARD_AMOUNT);
+                    tAcctInfo.setUnAvalAmount(Constants.BSC_REWARD_AMOUNT);
                     tAcctInfo.setUpdateTime(current);
                     if (res > 0) {
                         res = tAcctInfoMapper.update(tAcctInfo);
@@ -129,6 +130,29 @@ public class UserInfoServiceImpl implements IUserInfoService {
     @Override
     public TUserInfo findByUserName(String userName) {
         return tUserInfoMapper.findByUserName(userName);
+    }
+
+    @Override
+    public int activeUser(UserVo vo) {
+        Date current = new Date();
+        TUserInfo us = new TUserInfo();
+        us.setUserId(vo.getUserId());
+        us.setStatus(vo.getStatus());
+        us.setInvCode(vo.getInvCode());
+        us.setUpdateTime(current);
+        int res = tUserInfoMapper.update(us);
+        if(res>0){
+           TRecommRelInfo relInfo = tRecommRelInfoMapper.findByRecommonId(vo.getUserId());
+           if(relInfo!=null){
+               TAcctInfo tAcctInfo = new TAcctInfo();
+               tAcctInfo.setUserId(relInfo.getUserId());
+               tAcctInfo.setAvalAmount(relInfo.getAmount());
+               tAcctInfo.setTotalAmount(relInfo.getAmount());
+               tAcctInfo.setUpdateTime(current);
+               res = tAcctInfoMapper.update(tAcctInfo);
+           }
+        }
+        return res;
     }
 
 }

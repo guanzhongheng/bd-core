@@ -5,12 +5,17 @@
     <resultMap id="tRecommRelInfoResultMap" type="com.xcd.bd.entity.TRecommRelInfo">
         <id column="user_id" property="userId" jdbcType="BIGINT"/> 
         <result column="recomm_user_id" property="recommUserId" jdbcType="BIGINT"/> 
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/> 
+        <result column="amount" property="amount" jdbcType="DOUBLE"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
 
-        
-        
     </resultMap>
 
+
+    <select id="findByRecommonId" parameterType="java.lang.Long" resultMap="tRecommRelInfoResultMap">
+        SELECT *
+        FROM T_RECOMM_REL_INFO
+        WHERE recomm_user_id = #{recommonUserId,jdbcType=BIGINT}
+    </select>
 
     <select id="get" resultMap="tRecommRelInfoResultMap">
         SELECT *
@@ -34,11 +39,13 @@
         INSERT INTO T_RECOMM_REL_INFO(
             user_id,
             recomm_user_id,
+            amount,
             create_time
         )
         VALUES (
             #{userId,jdbcType=BIGINT},
             #{recommUserId,jdbcType=BIGINT},
+            #{amount,jdbcType=DOUBLE},
             #{createTime,jdbcType=TIMESTAMP}
         )
     </insert>
@@ -59,18 +66,5 @@
         </foreach>
     </insert>
 
-    <update id="update"  parameterType ="com.xcd.bd.entity.TRecommRelInfo">
-        UPDATE T_RECOMM_REL_INFO
-        SET
-        user_id = #{userId},
-        recomm_user_id = #{recommUserId},
-        create_time = #{createTime}
-        WHERE user_id = #{userId}
-    </update>
-
-    <delete id="delete"  parameterType ="com.xcd.bd.entity.TRecommRelInfo">
-        DELETE FROM T_RECOMM_REL_INFO
-        WHERE user_id = #{userId}
-    </delete>
 
 </mapper>

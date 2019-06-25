@@ -20,8 +20,5 @@ public interface TRecommRelInfoMapper {
 
     int insertBatch(List<TRecommRelInfo> tRecommRelInfos);
 
-    int update(TRecommRelInfo tRecommRelInfo);
-
-    int delete(TRecommRelInfo tRecommRelInfo);
-
+    TRecommRelInfo findByRecommonId(Long userId);
 }

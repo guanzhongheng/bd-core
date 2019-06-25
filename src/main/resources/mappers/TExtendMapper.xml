@@ -22,7 +22,15 @@
     </select>
 
     <select id="findRecommInfoByUserId" parameterType="java.lang.Long" resultType="com.xcd.bd.mode.vo.RecommRelVo">
-        select u.user_name recommUserName, rr.create_time createTime from T_RECOMM_REL_INFO rr LEFT JOIN T_USER_INFO u on rr.recomm_user_id=u.user_id where rr.user_id=#{userId,jdbcType=BIGINT}
+       SELECT
+            u.user_name recommUserName,
+            IF( u.STATUS = '0', "未激活", "激活" ) userStatus,
+            rr.create_time createTime
+        FROM
+            T_RECOMM_REL_INFO rr
+            LEFT JOIN T_USER_INFO u ON rr.recomm_user_id = u.user_id
+        WHERE
+	    rr.user_id = #{userId,jdbcType=BIGINT}
     </select>
     <select id="findUndealRewardsByStatus" parameterType="java.lang.Character" resultType="com.xcd.bd.mode.vo.RewardVo">
         SELECT

@@ -12,6 +12,8 @@ package com.xcd.bd.mode.vo;
  */
 public class RecommRelVo {
     private String recommUserName;
+    //激活、未激活
+    private String userStatus;
     private String createTime;
 
     public String getRecommUserName() {
@@ -20,6 +22,14 @@ public class RecommRelVo {
 
     public void setRecommUserName(String recommUserName) {
         this.recommUserName = recommUserName;
+    }
+
+    public String getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
     }
 
     public String getCreateTime() {

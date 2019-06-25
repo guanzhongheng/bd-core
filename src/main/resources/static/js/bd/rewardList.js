@@ -40,6 +40,11 @@ var REWARD = {
                     align : 'center'
                 },
                 {
+                    title : "用户激活状态",
+                    field : 'userStatus',
+                    align : 'center'
+                },
+                {
                     title : "用户创建时间",
                     field : 'createTime',
                     align : 'center'

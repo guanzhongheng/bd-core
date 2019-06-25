@@ -12,6 +12,7 @@ public class TAcctInfo implements Serializable {
     private Long userId;
     private Double avalAmount;
     private Double totalAmount;
+    private Double unAvalAmount;
     private Double rate;
     private Integer recommSum;
     private Date createTime;
@@ -26,8 +27,17 @@ public class TAcctInfo implements Serializable {
     public void setAvalAmount (Double avalAmount) {this.avalAmount = avalAmount;} 
     public Double getAvalAmount(){ return avalAmount;} 
     public void setTotalAmount (Double totalAmount) {this.totalAmount = totalAmount;} 
-    public Double getTotalAmount(){ return totalAmount;} 
-    public void setRate (Double rate) {this.rate = rate;} 
+    public Double getTotalAmount(){ return totalAmount;}
+
+    public Double getUnAvalAmount() {
+        return unAvalAmount;
+    }
+
+    public void setUnAvalAmount(Double unAvalAmount) {
+        this.unAvalAmount = unAvalAmount;
+    }
+
+    public void setRate (Double rate) {this.rate = rate;}
     public Double getRate(){ return rate;} 
     public void setRecommSum (Integer recommSum) {this.recommSum = recommSum;} 
     public Integer getRecommSum(){ return recommSum;} 

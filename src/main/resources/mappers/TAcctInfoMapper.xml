@@ -6,6 +6,7 @@
         <id column="user_id" property="userId" jdbcType="BIGINT"/>
         <result column="aval_amount" property="avalAmount" jdbcType="DOUBLE"/>
         <result column="total_amount" property="totalAmount" jdbcType="DOUBLE"/>
+        <result column="un_aval_amount" property="unAvalAmount" jdbcType="DOUBLE"/>
         <result column="rate" property="rate" jdbcType="DOUBLE"/>
         <result column="recomm_sum" property="recommSum" jdbcType="INTEGER"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
@@ -45,6 +46,7 @@
             user_id,
             aval_amount,
             total_amount,
+            un_aval_amount,
             rate,
             recomm_sum,
             create_time,
@@ -54,6 +56,7 @@
             #{userId,jdbcType=BIGINT},
             #{avalAmount,jdbcType=DOUBLE},
             #{totalAmount,jdbcType=DOUBLE},
+            #{unAvalAmount,jdbcType=DOUBLE},
             #{rate,jdbcType=DOUBLE},
             #{recommSum,jdbcType=INTEGER},
             #{createTime,jdbcType=TIMESTAMP},
@@ -94,6 +97,10 @@
 
             <if test="totalAmount!=null">
                 total_amount =total_amount+ #{totalAmount,jdbcType=DOUBLE},
+            </if>
+
+            <if test="unAvalAmount!=null">
+                un_aval_amount =un_aval_amount+ #{unAvalAmount,jdbcType=DOUBLE},
             </if>
 
             <if test="recommSum!=null">
