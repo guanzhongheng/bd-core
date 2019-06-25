@@ -181,7 +181,7 @@ public class TUserInfoController {
         UserVo userVo = new UserVo();
         userVo.setUserId(userId);
         userVo.setStatus('1');
-        userVo.setInvCode(InvCodeGenUtil.toSerialCode(userId);
+        userVo.setInvCode(InvCodeGenUtil.toSerialCode(userId));
         int res = userInfoService.update(userVo);
         if (res > 0) {
             result.setSuccess(true);
