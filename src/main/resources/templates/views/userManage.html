@@ -10,6 +10,7 @@
     <link th:href="@{/css/font-awesome.min93e3.css}" rel="stylesheet">
     <link th:href="@{/css/plugins/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet">
     <link th:href="@{/css/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/plugins/toastr/toastr.min.css}"  rel="stylesheet">
     <link th:href="@{/css/style.min862f.css}" rel="stylesheet">
 
     <link th:href="@{/fileUpload/css/bootstrap.min.css}" rel="stylesheet">
@@ -67,7 +68,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="col-sm-4 col-sm-offset-2">
-                                                <button class="btn btn-primary" type="submit" onclick="savePassword()">
+                                                <button class="btn btn-primary" type="button" onclick="savePassword()">
                                                     修改
                                                 </button>
                                             </div>
@@ -180,7 +181,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="col-sm-4 col-sm-offset-2">
-                                                <button class="btn btn-primary" type="submit" onclick="saveAddress()">保存
+                                                <button class="btn btn-primary" type="button" onclick="saveAddress()">保存
                                                 </button>
                                             </div>
                                         </div>
