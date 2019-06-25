@@ -17,6 +17,7 @@ function savePassword() {
         success: function (data) {
             if (data.success) {
                 toastr.success("保存成功");
+                document.getElementById("userManageInfo").reset();
             } else {
                 toastr.error("保存失败");
             }
@@ -69,9 +70,9 @@ function saveAddress() {
         cache: false,
         success: function (data) {
             debugger;
-            if (data.success()) {
+            if (data.success) {
                 toastr.success("保存成功");
-
+                document.getElementById("addressInfo").reset();
             } else {
                 toastr.error("保存失败");
             }
