@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人资料管理</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link th:href="@{/css/bootstrap.min14ed.css}"  rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min93e3.css}"  rel="stylesheet">
+    <link th:href="@{/css/plugins/bootstrap-table/bootstrap-table.min.css}"  rel="stylesheet">
+    <link th:href="@{/css/animate.min.css}"  rel="stylesheet">
+    <link th:href="@{/css/style.min862f.css}" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="ibox-title" th:if="${us.status} eq '0'">
+                        <span class="label label-info pull-right">未激活</span>
+                        <h5>个人信息</h5>
+                    </div>
+                    <div class="ibox-title" th:if="${us.status} eq '1'">
+                        <span class="label label-info pull-right">已激活</span>
+                        <h5>个人信息</h5>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">真实姓名:</label>
+                                    <label class="col-sm-3 control-label" th:text="${us.realName==null}?'':${us.realName}"/></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">联系方式:</label>
+                                    <label class="col-sm-3 control-label" th:text="${us.phone==null}?'':${us.phone}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">收货人姓名:</label>
+                                    <label class="col-sm-3 control-label" th:text="${us.recieverName==null}?'':${us.recieverName}"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">收货人联系电话:</label>
+                                    <label class="col-sm-3 control-label"th:text="${us.recieverPhone==null}?'':${us.recieverPhone}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">收货人地址:</label>
+                                    <label class="col-sm-3 control-label"  th:text="${us.recieverAddress==null}?'':${us.recieverAddress}"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">邀请码:</label>
+                                    <label class="col-sm-3 control-label"  th:text="${us.invCode==null}?'':${us.invCode}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right">待同步额度</span>
+                    <h5>未到帐交易所金额</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" th:text="${acc.avalCnstAmount==null}?0:${acc.avalCnstAmount}"/>
+                    <small>待到账交易所金额</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-success pull-right">剩余未激活</span>
+                    <h5>可用BSC</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" th:text="${acc.avalAmount==null}?0:${acc.avalAmount}"/>
+                    <small>可用收入</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-info pull-right">总量</span>
+                    <h5>总BSC</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" th:text="${acc.totalAmount==null}?0:${acc.totalAmount}"/>
+                    <small>总收入</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script th:src="@{/js/jquery.min.js}" ></script>
+<script th:src="@{/js/bootstrap.min.js}" ></script>
+<script th:src="@{/js/content.min.js}" ></script>
+
+
+
+<!--
+<script th:src="@{/js/plugins/flot/jquery.flot.js}"></script>
+<script th:src="@{/js/plugins/flot/jquery.flot.tooltip.min.js}"></script>
+<script th:src="@{/js/plugins/flot/jquery.flot.spline.js}"></script>
+<script th:src="@{/js/plugins/flot/jquery.flot.resize.js}"></script>
+<script th:src="@{/js/plugins/flot/jquery.flot.pie.js}"></script>
+<script th:src="@{/js/plugins/peity/jquery.peity.min.js}"></script>
+
+<script th:src="@{/js/demo/peity-demo.min.js}"></script>
+<script th:src="@{/js/content.min.js}"></script>
+<script th:src="@{/js/plugins/jquery-ui/jquery-ui.min.js}"></script>
+<script th:src="@{/js/plugins/gritter/jquery.gritter.min.js}"></script>
+<script th:src="@{/js/plugins/easypiechart/jquery.easypiechart.js}"></script>
+<script th:src="@{/js/plugins/sparkline/jquery.sparkline.min.js}"></script>
+<script th:src="@{/js/demo/sparkline-demo.min.js}"></script>
+-->
+
+
+<script th:src="@{/js/plugins/bootstrap-table/bootstrap-table.min.js}" ></script>
+<script th:src="@{/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js}" ></script>
+<script th:src="@{/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}" ></script>
+
+</body>
+
+</html>

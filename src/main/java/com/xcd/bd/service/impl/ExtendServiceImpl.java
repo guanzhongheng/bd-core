@@ -103,7 +103,7 @@ public class ExtendServiceImpl implements IExtendService {
         TExportRecord record = new TExportRecord();
         record.setId(id);
         record.setStatus('1');
-        record.setCreateTime(current);
+        record.setUpdateTime(current);
         int res = exportRecordMapper.updateStatusById(record);
         if (res > 0) {
             //扣除余额

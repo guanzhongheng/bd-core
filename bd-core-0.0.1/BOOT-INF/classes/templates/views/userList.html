@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>案件列表</title>
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link th:href="@{/css/bootstrap.min14ed.css}"  rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min93e3.css}"  rel="stylesheet">
+    <link th:href="@{/css/plugins/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet">
+    <link th:href="@{/css/animate.min.css}"  rel="stylesheet">
+    <link th:href="@{/css/style.min862f.css}"  rel="stylesheet">
+    <link th:href="@{/css/plugins/toastr/toastr.min.css}"  rel="stylesheet">
+    <link th:href="@{/css/common.css}" href="css/common.css?v=4.1.0" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<!-- 页面展示主体 -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>用户列表</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+                <form class="form-horizontal">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="col-sm-4 col-sm-4 control-label">账户状态:</label>
+                        <div class="col-sm-2">
+                            <select class="form-control m-b" name="status" id="status" style="min-width: 100px">
+                                <option value="">---请选择---</option>
+                                <option value="0">未激活</option>
+                                <option value="1">已激活</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+
+                        <button id="uploadAccount" type="button" class="btn btn-w-m btn-success"
+                                onclick="excelUploadFilesForAccount()" style="float:right;margin-right:15px;">
+                            <i class="fa fa-upload"></i>导出R账号
+                        </button>
+                        <button id="uploadAddress" type="button" class="btn btn-w-m btn-success"
+                                onclick="excelUploadFilesForAddress()" style="float:right;margin-right:15px;">
+                            <i class="fa fa-upload"></i>导出收货地址
+                        </button>
+                        <button id="queryCase" type="button" class="btn btn-w-m btn-success"
+                                onclick="queryIncomeTrade()" style="float:right;margin-right:15px;">
+                            <i class="fa fa-search"></i>查询
+                        </button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table">
+                        <table id="userListTable" data-mobile-responsive="true">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/js/jquery.min.js}" ></script>
+<script th:src="@{/js/bootstrap.min.js}" ></script>
+<script th:src="@{/js/content.min.js}" ></script>
+<script th:src="@{/js/plugins/bootstrap-table/bootstrap-table.min.js}" ></script>
+<script th:src="@{/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js}" ></script>
+<script th:src="@{/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}" ></script>
+<script th:src="@{/js/plugins/toastr/toastr.min.js}" ></script>
+<script th:src="@{/js/plugins/validate/jquery.validate.min.js}" ></script>
+<script th:src="@{/js/plugins/layer/laydate/laydate.js}" ></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/bd/userList.js}"></script>
+<script>
+    toastr.options = {
+        "positionClass": "toast-bottom-full-width"
+    };
+</script>
+</body>
+
+</html>

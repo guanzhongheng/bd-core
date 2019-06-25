@@ -5,6 +5,7 @@ import com.xcd.bd.entity.TUserInfo;
 import com.xcd.bd.mode.vo.*;
 import com.xcd.bd.service.IExtendService;
 import com.xcd.bd.service.IUserInfoService;
+import com.xcd.bd.utils.InvCodeGenUtil;
 import com.xcd.bd.utils.Md5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -180,6 +181,7 @@ public class TUserInfoController {
         UserVo userVo = new UserVo();
         userVo.setUserId(userId);
         userVo.setStatus('1');
+        userVo.setInvCode(InvCodeGenUtil.toSerialCode(userId);
         int res = userInfoService.update(userVo);
         if (res > 0) {
             result.setSuccess(true);

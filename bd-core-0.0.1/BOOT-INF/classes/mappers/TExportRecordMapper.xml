@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xcd.bd.dao.TExportRecordMapper">
+
+    <insert id="insertBatch" parameterType="com.xcd.bd.entity.TExportRecord">
+        INSERT INTO T_EXPORT_RECORD(
+        id,
+        user_id,
+        amount,
+        status,
+        create_time
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id,jdbcType=BIGINT},
+            #{item.userId,jdbcType=BIGINT},
+            #{item.amount,jdbcType=DOUBLE},
+            #{item.status,jdbcType=CHAR},
+            #{item.createTime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateStatusById" parameterType="com.xcd.bd.entity.TExportRecord">
+        update T_EXPORT_RECORD
+        set
+          status = #{status,jdbcType=CHAR},
+          update_time=#{updateTime,jdbcType=TIMESTAMP}
+         where id = #{id,jdbcType=BIGINT}
+    </update>
+
+</mapper>

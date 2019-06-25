@@ -116,12 +116,8 @@ public class UserInfoServiceImpl implements IUserInfoService {
         us.setRecieverAddress(vo.getRecieverAddress());
         us.setRecieverPhone(vo.getRecieverPhone());
         us.setAttachUrl(vo.getAttachUrl());
-
-        if (vo.getStatus() != null) {
-            //账户激活
-            us.setStatus(vo.getStatus());
-            us.setInvCode(InvCodeGenUtil.toSerialCode(vo.getUserId()));
-        }
+        us.setStatus(vo.getStatus());
+        us.setInvCode(vo.getInvCode());
         us.setUpdateTime(current);
         return tUserInfoMapper.update(us);
     }
@@ -133,7 +129,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
     @Override
     public TUserInfo findByUserName(String userName) {
-            return tUserInfoMapper.findByUserName(userName);
+        return tUserInfoMapper.findByUserName(userName);
     }
 
 }
