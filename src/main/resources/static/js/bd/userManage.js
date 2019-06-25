@@ -42,8 +42,9 @@ function saveUser() {
         success: function (data) {
             debugger;
             if (data.success) {
+                debugger;
                 toastr.success("保存成功");
-                $("#rfinxInfo").empty();
+                document.getElementById("rfinxInfo").reset();
             } else {
                 toastr.error("保存失败");
             }
