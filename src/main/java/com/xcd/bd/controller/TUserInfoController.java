@@ -143,7 +143,7 @@ public class TUserInfoController {
         if (res > 0) {
             result.setSuccess(true);
         } else {
-            result.setMsg("系统异常，修改密码失败！");
+            result.setMsg("系统异常，修改收货信息失败！");
         }
         return result;
     }
@@ -186,7 +186,7 @@ public class TUserInfoController {
         if (res > 0) {
             result.setSuccess(true);
         } else {
-            result.setMsg("系统异常，修改密码失败！");
+            result.setMsg("系统异常，激活用户失败！");
         }
         return result;
     }
